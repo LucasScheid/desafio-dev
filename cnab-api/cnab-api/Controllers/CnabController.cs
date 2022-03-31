@@ -1,12 +1,17 @@
-﻿using Microsoft.AspNetCore.Cors;
+﻿using cnab_entities.models;
+using cnab_services.arquivo;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace cnab_api.Controllers
 {   
     public class CnabController : BaseController
     {
-        public CnabController(ILogger<CnabController> log): base (log)
+        private readonly IArquivoService<CNAB> _arquivoService;
+
+        public CnabController(ILogger<CnabController> log, IArquivoService<CNAB> arquivoService) : base (log)
         {
+            _arquivoService = arquivoService;
         }
 
         [HttpPost, DisableRequestSizeLimit]
@@ -15,7 +20,7 @@ namespace cnab_api.Controllers
         {
             try
             {
-                return await Task.FromResult(Ok());
+                return Ok(await _arquivoService.Upload(fileList));
             }
             catch (Exception ex)
             {

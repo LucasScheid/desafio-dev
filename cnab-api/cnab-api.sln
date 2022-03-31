@@ -5,6 +5,14 @@ VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cnab-api", "cnab-api\cnab-api.csproj", "{31EE888F-C505-4EE8-BAD4-62E0C1FBC446}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cnab-services", "cnab-services\cnab-services.csproj", "{5F1E27E6-F826-4C63-A5CE-24584E01D184}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cnab-entities", "cnab-entities\cnab-entities.csproj", "{1574B827-7B0E-47FC-BD1D-EADBC2A8DB7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cnab-infra", "cnab-infra\cnab-infra.csproj", "{C20ABADF-FB11-47E0-BA2D-F92AD3EC512C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cnab-helpers", "cnab-helpers\cnab-helpers.csproj", "{24EAC51A-AAEC-449B-BB83-5838B8A79EAE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +23,22 @@ Global
 		{31EE888F-C505-4EE8-BAD4-62E0C1FBC446}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31EE888F-C505-4EE8-BAD4-62E0C1FBC446}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31EE888F-C505-4EE8-BAD4-62E0C1FBC446}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F1E27E6-F826-4C63-A5CE-24584E01D184}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F1E27E6-F826-4C63-A5CE-24584E01D184}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F1E27E6-F826-4C63-A5CE-24584E01D184}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F1E27E6-F826-4C63-A5CE-24584E01D184}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1574B827-7B0E-47FC-BD1D-EADBC2A8DB7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1574B827-7B0E-47FC-BD1D-EADBC2A8DB7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1574B827-7B0E-47FC-BD1D-EADBC2A8DB7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1574B827-7B0E-47FC-BD1D-EADBC2A8DB7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C20ABADF-FB11-47E0-BA2D-F92AD3EC512C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C20ABADF-FB11-47E0-BA2D-F92AD3EC512C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C20ABADF-FB11-47E0-BA2D-F92AD3EC512C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C20ABADF-FB11-47E0-BA2D-F92AD3EC512C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24EAC51A-AAEC-449B-BB83-5838B8A79EAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24EAC51A-AAEC-449B-BB83-5838B8A79EAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24EAC51A-AAEC-449B-BB83-5838B8A79EAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24EAC51A-AAEC-449B-BB83-5838B8A79EAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -26,7 +26,7 @@ CREATE TABLE [arquivo](
 	[valor] [decimal](15, 2) NOT NULL,
 	[cpf] [varchar](11) NOT NULL,
 	[cartao] [varchar](12) NOT NULL,
-	[hora] [varchar](6) NOT NULL,
+	[hora] [varchar](8) NOT NULL,
 	[dono_loja] [varchar](14) NOT NULL,
 	[nome_loja] [varchar](19) NOT NULL,
 	[data_inclusao] [datetime] NOT NULL,
