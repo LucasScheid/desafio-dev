@@ -6,8 +6,9 @@ namespace cnab_api
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.ConfigureCors();            
+            services.ConfigureCors();
             services.ConfigureServices();
+            services.ConfigureSqlServerConnection();
             services.AddControllers();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();

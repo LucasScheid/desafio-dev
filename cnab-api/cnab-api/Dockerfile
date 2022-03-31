@@ -7,6 +7,11 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["cnab-api/cnab-api.csproj", "cnab-api/"]
+COPY ["cnab-services/cnab-services.csproj", "cnab-services/"]
+COPY ["cnab-entities/cnab-entities.csproj", "cnab-entities/"]
+COPY ["cnab-infra/cnab-infra.csproj", "cnab-infra/"]
+COPY ["cnab-contracts/cnab-contracts.csproj", "cnab-contracts/"]
+COPY ["cnab-helpers/cnab-helpers.csproj", "cnab-helpers/"]
 RUN dotnet restore "cnab-api/cnab-api.csproj"
 COPY . .
 WORKDIR "/src/cnab-api"

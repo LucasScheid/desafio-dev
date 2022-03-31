@@ -1,7 +1,12 @@
-﻿using cnab_entities.map;
+﻿using cnab_contracts.database;
+using cnab_entities.map;
 using cnab_entities.models;
+using cnab_helpers.database;
 using cnab_helpers.environment;
+using cnab_infra.database;
+using cnab_infra.database.data;
 using cnab_services.arquivo;
+using cnab_services.database;
 using System.Data.SqlClient;
 using System.Text;
 
@@ -39,10 +44,10 @@ namespace cnab_api.extensions
             return sbConnectionString.ToString();
         }
 
-        //public static void ConfigureSqlServerConnection(this IServiceCollection services)
-        //{
-        //    services.AddScoped<IDBConnection, SqlServerConnection>(_ => new SqlServerConnection(new SqlConnection(GetDBConnectionString())));
-        //}
+        public static void ConfigureSqlServerConnection(this IServiceCollection services)
+        {
+            services.AddScoped<IDBConnection, SqlServerConnection>(_ => new SqlServerConnection(new SqlConnection(GetDBConnectionString())));
+        }
 
         //  public static void ConfigureSwagger(this IServiceCollection services) =>
         //services.AddSwaggerGen(c =>
@@ -81,6 +86,12 @@ namespace cnab_api.extensions
         public static void ConfigureServices(this IServiceCollection services)
         {
             services.AddScoped<IEnvironmentHelper, EnvironmentHelper>();
+            services.AddScoped<ISqlCommandHelper, SqlCommandHelper>();
+            services.AddScoped<ISqlOperationHelper, SqlOperationHelper>();
+
+            services.AddScoped<IArquivoSqlCommand, ArquivoSqlCommand>();
+            services.AddScoped<IArquivoDbService, ArquivoDbService>();
+
             services.AddTransient<IArquivoService<CNAB>, ArquivoService>();
             services.AddTransient<IArquivoMapPosicao, MapCNABTXT>();
         }

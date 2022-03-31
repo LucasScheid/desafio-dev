@@ -135,7 +135,7 @@ namespace cnab_services.arquivo
 
         protected static string GetConteudo(PosicaoArquivo posicaoCampoArquivo, string linha)
         {
-           return !posicaoCampoArquivo.UltimoCampo ? linha[posicaoCampoArquivo.Inicio..posicaoCampoArquivo.Fim] : linha[posicaoCampoArquivo.Inicio..];
+            return !posicaoCampoArquivo.UltimoCampo ? linha[posicaoCampoArquivo.Inicio..posicaoCampoArquivo.Fim] : linha[posicaoCampoArquivo.Inicio..];
         }
 
         protected string GetMensagemErro()
@@ -147,7 +147,8 @@ namespace cnab_services.arquivo
         {
             using var reader = new StreamReader(_file.OpenReadStream(), Encoding.UTF8);
 
-            while (reader.Peek() >= 0) { 
+            while (reader.Peek() >= 0)
+            {
                 var linha = await reader.ReadLineAsync();
                 _linhas.Add(string.IsNullOrEmpty(linha) ? string.Empty : linha);
             }

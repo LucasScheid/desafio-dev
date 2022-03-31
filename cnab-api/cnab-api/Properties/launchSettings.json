@@ -19,7 +19,13 @@
         "APPLICATION_NAME": "CNAB API",
         "APPLICATION_TITLE": "CNAB API",
         "APPLICATION_DESCRIPTION": "CNAB API (Services)",
-        "FILE_UPLOAD_MAX_SIZE": "2097152"
+        "FILE_UPLOAD_MAX_SIZE": "2097152",
+        "SQLSERVER_HOST": "localhost",
+        "SQLSERVER_USER": "sa",
+        "SQLSERVER_PASSWORD": "z9CzyUwTe3NAkjX",
+        "SQLSERVER_DATABASE": "dbcnab",
+        "SQLSERVER_SCHEMA": "dbo",
+        "SQLSERVER_ADDITIONAL_CONFIGS": "MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=True;Connection Timeout=20000;"
       },
       "applicationUrl": "https://localhost:7060;http://localhost:5060",
       "dotnetRunMessages": true

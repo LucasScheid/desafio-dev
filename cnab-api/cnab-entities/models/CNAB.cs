@@ -34,7 +34,7 @@ namespace cnab_entities.models
 
         public void SetData(string valor)
         {
-            this.Data = DateTime.ParseExact(valor, "yyyyMMdd", CultureInfo.InvariantCulture); 
+            this.Data = DateTime.ParseExact(valor, "yyyyMMdd", CultureInfo.InvariantCulture);
         }
 
         public void SetTipo(string valor)
@@ -49,7 +49,7 @@ namespace cnab_entities.models
 
         public void SetValor(string valor)
         {
-            this.Valor = decimal.Parse(valor, CultureInfo.InvariantCulture)/100; 
+            this.Valor = decimal.Parse(valor, CultureInfo.InvariantCulture) / 100;
         }
     }
 }

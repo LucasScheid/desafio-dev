@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\cnab-infra\cnab-infra.csproj" />
     <ProjectReference Include="..\cnab-services\cnab-services.csproj" />
   </ItemGroup>
 
