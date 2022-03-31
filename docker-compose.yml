@@ -1,0 +1,29 @@
+version: '3.5'
+
+networks :
+  localdev:
+    name: localdev
+
+services:
+ #db-server:
+ #   container_name: db-server
+ #   build:
+ #     #context: infra-db/
+ #     dockerfile: infra-db/Dockerfile
+ #   ports:
+ #     - "1433:1433"
+ #   networks:
+ #     - localdev
+
+  cnab-api:
+    container_name: cnab-api
+    build:
+      context: cnab-api
+      dockerfile: cnab-api/Dockerfile
+    ports:
+      - "8050:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development  
+    networks:
+      - localdev
+
