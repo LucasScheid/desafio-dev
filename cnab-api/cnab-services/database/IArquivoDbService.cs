@@ -12,5 +12,7 @@ namespace cnab_services.database
 
         Task<OperacaoLojaResult> ObterDadosLoja(string nomeLoja, bool reuseConnection = false, IDBConnection connection = null);
 
+        Task<IList<CNABDatabase>> ObterTodosRegistros(bool reuseConnection = false, IDBConnection connection = null);
+
     }
 }

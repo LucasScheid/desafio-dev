@@ -8,5 +8,7 @@
 
         string ObterDadosLoja();
 
+        string ObterTodosRegistros();
+
     }
 }

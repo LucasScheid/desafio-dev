@@ -7,6 +7,9 @@ using cnab_infra.database;
 using cnab_infra.database.data;
 using cnab_services.arquivo;
 using cnab_services.database;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.OpenApi.Models;
 using System.Data.SqlClient;
 using System.Text;
 
@@ -49,39 +52,47 @@ namespace cnab_api.extensions
             services.AddScoped<IDBConnection, SqlServerConnection>(_ => new SqlServerConnection(new SqlConnection(GetDBConnectionString())));
         }
 
-        //  public static void ConfigureSwagger(this IServiceCollection services) =>
-        //services.AddSwaggerGen(c =>
-        //{
-        //    c.SwaggerDoc(Environment.GetEnvironmentVariable("API_VERSION"), new OpenApiInfo
-        //    {
-        //        Title = Environment.GetEnvironmentVariable("APPLICATION_NAME"),
-        //        Version = Environment.GetEnvironmentVariable("API_VERSION"),
-        //        Description = Environment.GetEnvironmentVariable("APPLICATION_DESCRIPTION")
-        //    });
+        public static void ConfigurarBehaviorOptions(this IServiceCollection services) =>
+          services.Configure<ApiBehaviorOptions>(options =>
+          {
+              options.SuppressModelStateInvalidFilter = true;
+          });
 
-        //    var securityScheme = new OpenApiSecurityScheme
-        //    {
-        //        Name = "JWT Authentication",
-        //        Description = "Enter JWT Bearer token **_only_**",
-        //        In = ParameterLocation.Header,
-        //        Type = SecuritySchemeType.Http,
-        //        Scheme = "bearer", // must be lower case
-        //         BearerFormat = "JWT",
-        //        Reference = new OpenApiReference
-        //        {
-        //            Id = JwtBearerDefaults.AuthenticationScheme,
-        //            Type = ReferenceType.SecurityScheme
-        //        }
-        //    };
+        public static void ConfigurarSwagger(this IServiceCollection services) =>
+       services.AddSwaggerGen(c =>
+       {
+           c.SwaggerDoc(Environment.GetEnvironmentVariable("API_VERSION"), new OpenApiInfo
+           {
+               Title = Environment.GetEnvironmentVariable("APPLICATION_NAME"),
+               Version = Environment.GetEnvironmentVariable("API_VERSION"),
+               Description = Environment.GetEnvironmentVariable("APPLICATION_DESCRIPTION"),
+           });
 
-        //    c.AddSecurityDefinition(securityScheme.Reference.Id, securityScheme);
+           c.EnableAnnotations();
 
-        //    c.AddSecurityRequirement(new OpenApiSecurityRequirement
-        //         {
-        //              {securityScheme, Array.Empty<string>()}
-        //         });
+           var securityScheme = new OpenApiSecurityScheme
+           {
+               Name = "Autenticacao JWT",
+               Description = "Informe o token JWT Bearer **_somente_**",
+               In = ParameterLocation.Header,
+               Type = SecuritySchemeType.Http,
+               Scheme = "bearer",
+               BearerFormat = "JWT",
+               Reference = new OpenApiReference
+               {
+                   Id = JwtBearerDefaults.AuthenticationScheme,
+                   Type = ReferenceType.SecurityScheme
+               }
+           };
 
-        //});
+           c.AddSecurityDefinition(securityScheme.Reference.Id, securityScheme);
+
+           c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {securityScheme, Array.Empty<string>()}
+                });
+
+       });
 
         public static void ConfigureServices(this IServiceCollection services)
         {
@@ -91,6 +102,8 @@ namespace cnab_api.extensions
 
             services.AddScoped<IArquivoSqlCommand, ArquivoSqlCommand>();
             services.AddScoped<IArquivoDbService, ArquivoDbService>();
+            services.AddScoped<ITipoTransacaoSqlCommand, TipoTransacaoSqlCommand>();
+            services.AddScoped<ITipoTransacaoDbService, TipoTransacaoDbService>();
 
             services.AddTransient<IArquivoService<CNAB>, ArquivoService>();
             services.AddTransient<IArquivoMapPosicao, MapCNABTXT>();

@@ -80,5 +80,27 @@ namespace cnab_infra.database.data
 
             return sb.ToString();
         }
+
+        public string ObterTodosRegistros()
+        {
+            StringBuilder sb = new();
+
+            sb.Append("SELECT");
+            sb.Append(" [id]");
+            sb.Append(",[tipo]");
+            sb.Append(",[data]");
+            sb.Append(",[valor]");
+            sb.Append(",[cpf]");
+            sb.Append(",[cartao]");
+            sb.Append(",[hora]");
+            sb.Append(",[dono_loja]");
+            sb.Append(",[nome_loja]");
+            sb.Append(",[data_inclusao]");
+            sb.Append(" FROM ");
+            sb.Append(_sqlCommandHelper.GetCompleteTableName("arquivo", true));
+            sb.Append(" ORDER BY [id]");
+
+            return sb.ToString();
+        }
     }
 }

@@ -9,8 +9,10 @@ namespace cnab_api
             services.ConfigureCors();
             services.ConfigureServices();
             services.ConfigureSqlServerConnection();
+            services.ConfigurarBehaviorOptions();
             services.AddControllers();
             services.AddEndpointsApiExplorer();
+            services.ConfigurarSwagger();
             services.AddSwaggerGen();
         }
 

@@ -1,13 +1,16 @@
 ﻿using cnab_entities.enums;
 using cnab_entities.map;
 using cnab_entities.models;
+using cnab_services.database;
 using Microsoft.AspNetCore.Http;
+using System.Globalization;
 
 namespace cnab_services.arquivo
 {
     internal class ArquivoUploadTXT : BaseArquivoUpload, IArquivoUpload<CNAB>
     {
         private readonly IArquivoMapPosicao _arquivoMapPosicao;
+        private readonly ITipoTransacaoDbService _tipoTransacaoDbService;
 
         private readonly PosicaoArquivo _posTipo;
         private readonly PosicaoArquivo _posData;
@@ -18,9 +21,10 @@ namespace cnab_services.arquivo
         private readonly PosicaoArquivo _posDonoLoja;
         private readonly PosicaoArquivo _posNomeLoja;
 
-        public ArquivoUploadTXT(IFormFile formFile, int fileMaxSize, IArquivoMapPosicao arquivoMapPosicao) : base(formFile, fileMaxSize)
+        public ArquivoUploadTXT(IFormFile formFile, int fileMaxSize, IArquivoMapPosicao arquivoMapPosicao, ITipoTransacaoDbService tipoTransacaoDbService) : base(formFile, fileMaxSize)
         {
             _arquivoMapPosicao = arquivoMapPosicao;
+            _tipoTransacaoDbService = tipoTransacaoDbService;
 
             _posTipo = _arquivoMapPosicao.ObterPosicaoCampo(NomeCamposCNAB.TIPO);
             _posData = _arquivoMapPosicao.ObterPosicaoCampo(NomeCamposCNAB.DATA);
@@ -30,6 +34,14 @@ namespace cnab_services.arquivo
             _posHora = _arquivoMapPosicao.ObterPosicaoCampo(NomeCamposCNAB.HORA);
             _posDonoLoja = _arquivoMapPosicao.ObterPosicaoCampo(NomeCamposCNAB.DONO_LOJA);
             _posNomeLoja = _arquivoMapPosicao.ObterPosicaoCampo(NomeCamposCNAB.NOME_LOJA);
+        }
+
+        private void ValidarTipoTransacaoEnviado(IList<TipoTransacao> tiposTransacao, string tipoTransacaoEnviado, int nroLinha)
+        {
+            int tipo = int.Parse(tipoTransacaoEnviado);
+
+            if (!tiposTransacao.Any(t => t.Id == tipo))
+                AddErrosLinha($"{ObterIndicadorLinha(nroLinha)} O valor {NomeCamposCNAB.TIPO} é inválido. Valor enviado: {tipo}");
         }
 
         public async Task<bool> LinhasValidas()
@@ -44,6 +56,8 @@ namespace cnab_services.arquivo
                 return false;
             }
 
+            IList<TipoTransacao> tiposTransacao = await _tipoTransacaoDbService.ObterTodosRegistros();
+
             foreach (var linha in linhas)
             {
                 nroLinha++;
@@ -54,6 +68,7 @@ namespace cnab_services.arquivo
                         continue;
 
                     ValidarCampoInt(ObterIndicadorLinha(nroLinha), GetConteudo(_posTipo, linha), _posTipo.NomeCampo.ToString());
+                    ValidarTipoTransacaoEnviado(tiposTransacao, GetConteudo(_posTipo, linha), nroLinha);
                     ValidarCampoData(ObterIndicadorLinha(nroLinha), GetConteudo(_posData, linha), _posData.NomeCampo.ToString(), "yyyyMMdd");
                     ValidarCampoDecimal(ObterIndicadorLinha(nroLinha), GetConteudo(_posValor, linha), _posValor.NomeCampo.ToString());
                     ValidarCampoBranco(ObterIndicadorLinha(nroLinha), GetConteudo(_posCPF, linha), _posCPF.NomeCampo.ToString());
@@ -77,12 +92,13 @@ namespace cnab_services.arquivo
 
             foreach (var linha in await ObterLinhas())
             {
-                cnabsUpload.Add(new CNAB(GetConteudo(_posTipo, linha),
-                                GetConteudo(_posData, linha),
-                                GetConteudo(_posValor, linha),
+                cnabsUpload.Add(new CNAB(
+                                int.Parse(GetConteudo(_posTipo, linha)),
+                                (DateTime.ParseExact(GetConteudo(_posData, linha), "yyyyMMdd", CultureInfo.InvariantCulture)),
+                                (decimal.Parse(GetConteudo(_posValor, linha), CultureInfo.InvariantCulture) / 100),
                                 GetConteudo(_posCPF, linha),
                                 GetConteudo(_posCartao, linha),
-                                GetConteudo(_posHora, linha),
+                                (DateTime.ParseExact(GetConteudo(_posHora, linha), "HHmmss", CultureInfo.InvariantCulture)).TimeOfDay.ToString(),
                                 GetConteudo(_posDonoLoja, linha),
                                 GetConteudo(_posNomeLoja, linha)));
             }

@@ -80,5 +80,25 @@ namespace cnab_services.database
 
             return new OperacaoLojaResult(operacoesLojaResumo, operacoesLojaResumo.Sum(s => s.Valor), nomeLojaFiltro);
         }
+
+        public async Task<IList<CNABDatabase>> ObterTodosRegistros(bool reuseConnection = false, IDBConnection connection = null)
+        {
+            IList<CNABDatabase> registrosCNAB = new List<CNABDatabase>();
+
+            foreach (Dictionary<string, dynamic> queryResult in await _sqlOperationHelper.MapSqlReader(_arquivoSqlCommand.ObterTodosRegistros(), reuseConnection))
+            {
+                registrosCNAB.Add(new CNABDatabase(queryResult["tipo"],
+                                                   queryResult["data"],
+                                                   queryResult["valor"],
+                                                   queryResult["cpf"],
+                                                   queryResult["cartao"],
+                                                   queryResult["hora"],
+                                                   queryResult["dono_loja"],
+                                                   queryResult["nome_loja"],
+                                                   queryResult["id"],
+                                                   queryResult["data_inclusao"]));
+            }
+            return registrosCNAB;
+        }
     }
 }
