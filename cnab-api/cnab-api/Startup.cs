@@ -9,6 +9,7 @@ namespace cnab_api
             services.ConfigureCors();
             services.ConfigureServices();
             services.ConfigureSqlServerConnection();
+            services.ConfigurarJWT();
             services.ConfigurarBehaviorOptions();
             services.AddControllers();
             services.AddEndpointsApiExplorer();
@@ -20,6 +21,8 @@ namespace cnab_api
         {
             app.UseRouting();
             app.UseCors("CorsPolicy");
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

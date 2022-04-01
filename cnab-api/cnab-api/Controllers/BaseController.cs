@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Cors;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
@@ -7,6 +8,7 @@ namespace cnab_api.Controllers
     [EnableCors]
     [Route("[controller]")]
     [ApiController]
+    [Authorize]
     public class BaseController : ControllerBase
     {
         private readonly ILogger _log;

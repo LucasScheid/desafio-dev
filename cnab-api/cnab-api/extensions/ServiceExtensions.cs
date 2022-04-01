@@ -7,10 +7,13 @@ using cnab_infra.database;
 using cnab_infra.database.data;
 using cnab_services.arquivo;
 using cnab_services.database;
+using cnab_services.token;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace cnab_api.extensions
@@ -94,6 +97,29 @@ namespace cnab_api.extensions
 
        });
 
+        public static void ConfigurarJWT(this IServiceCollection services)
+        {
+            Environment.SetEnvironmentVariable("JWT_SECRET", Convert.ToBase64String(new HMACSHA256().Key), EnvironmentVariableTarget.Process);
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                    .AddJwtBearer(options =>
+                    {
+                        options.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            ValidateIssuer = true,
+                            ValidateAudience = true,
+                            ValidateIssuerSigningKey = true,
+                            ValidateLifetime = true,
+                            RequireExpirationTime = true,
+                            ClockSkew = TimeSpan.Zero,
+                            ValidIssuer = Environment.GetEnvironmentVariable("JWT_ISSUER"),
+                            ValidAudience = Environment.GetEnvironmentVariable("JWT_AUDIENCE"),
+                            IssuerSigningKey = new SymmetricSecurityKey(Convert.FromBase64String(Environment.GetEnvironmentVariable("JWT_SECRET")))
+                        };
+
+                    });
+        }
+
         public static void ConfigureServices(this IServiceCollection services)
         {
             services.AddScoped<IEnvironmentHelper, EnvironmentHelper>();
@@ -107,6 +133,9 @@ namespace cnab_api.extensions
 
             services.AddTransient<IArquivoService<CNAB>, ArquivoService>();
             services.AddTransient<IArquivoMapPosicao, MapCNABTXT>();
+
+            services.AddTransient<ILoginServico, LoginServico>();
+            services.AddTransient<IGeradorToken, GeradorToken>();
         }
 
     }

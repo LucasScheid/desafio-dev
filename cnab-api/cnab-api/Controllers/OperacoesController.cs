@@ -26,6 +26,7 @@ namespace cnab_api.Controllers
         [SwaggerOperation(Summary = "Upload arquivo CNAB.", Description = "Método responsável por fazer o upload e processamento do arquivo cnab e a gravação na base de dados.")]
         [SwaggerResponse(201, "O processamento do arquivo e a gravação na base de dados foram realizados com sucesso.")]
         [SwaggerResponse(400, "Ocorreu um erro durante alguma das etapas do processamento.")]
+        [SwaggerResponse(401, "Operação não autorizada pois necessita do token de autenticação.")]
         public async Task<IActionResult> UploadArquivoCnab(List<IFormFile> fileList)
         {
             try
@@ -53,6 +54,7 @@ namespace cnab_api.Controllers
         [SwaggerResponse(200, "As lojas foram encontradas.")]
         [SwaggerResponse(204, "Não foi possível encontrar nenhuma loja cadastrada.")]
         [SwaggerResponse(400, "Ocorreu um erro durante a busca do nome das lojas.")]
+        [SwaggerResponse(401, "Operação não autorizada pois necessita do token de autenticação.")]
         public async Task<IActionResult> ObterTodasLojas()
         {
             try
@@ -76,6 +78,7 @@ namespace cnab_api.Controllers
         [SwaggerResponse(200, "As operações da loja informada foram encontradas.")]
         [SwaggerResponse(204, "Não foi possível encontrar nenhuma operação para a loja informada.")]
         [SwaggerResponse(400, "Ocorreu um erro durante a busca das operações referente a loja.")]
+        [SwaggerResponse(401, "Operação não autorizada pois necessita do token de autenticação.")]
         public async Task<IActionResult> ObterDadosLoja([BindRequired] string nomeLoja)
         {
             try
@@ -99,6 +102,7 @@ namespace cnab_api.Controllers
         [SwaggerResponse(200, "Os registros foram encontrados.")]
         [SwaggerResponse(204, "Não foi possível encontrar nenhum registro inserido na base de dados.")]
         [SwaggerResponse(400, "Ocorreu um erro durante a busca dos registros.")]
+        [SwaggerResponse(401, "Operação não autorizada pois necessita do token de autenticação.")]
         public async Task<IActionResult> ObterTodosRegistros()
         {
             try
@@ -122,6 +126,7 @@ namespace cnab_api.Controllers
         [SwaggerResponse(200, "Os tipos de transação foram encontrados.")]
         [SwaggerResponse(204, "Não foi possível encontrar nenhum registro inserido na base de dados.")]
         [SwaggerResponse(400, "Ocorreu um erro durante a busca dos tipos de transações.")]
+        [SwaggerResponse(401, "Operação não autorizada pois necessita do token de autenticação.")]
         public async Task<IActionResult> ObterTiposTransacao()
         {
             try

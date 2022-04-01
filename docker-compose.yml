@@ -15,27 +15,31 @@ services:
     networks:
       - localdev
 
- #cnab-api:
- #   container_name: cnab-api
- #   build:
- #     context: cnab-api
- #     dockerfile: cnab-api/Dockerfile
- #   ports:
- #     - "8050:80"
- #   depends_on: 
- #     - "db-server"      
- #   environment:
- #     - ASPNETCORE_ENVIRONMENT=Development
- #     - API_VERSION=v1
- #     - APPLICATION_NAME=CNAB API
- #     - APPLICATION_TITLE=CNAB API
- #     - APPLICATION_DESCRIPTION=CNAB API (Services)  
- #     - FILE_UPLOAD_MAX_SIZE=2097152  
- #     - SQLSERVER_HOST=db-server
- #     - SQLSERVER_USER=sa
- #     - SQLSERVER_PASSWORD=z9CzyUwTe3NAkjX
- #     - SQLSERVER_DATABASE=dbcnab
- #     - SQLSERVER_SCHEMA=dbo
- #     - SQLSERVER_ADDITIONAL_CONFIGS=MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=True;
- #   networks:
- #     - localdev
+ cnab-api:
+    container_name: cnab-api
+    build:
+      context: cnab-api
+      dockerfile: cnab-api/Dockerfile
+    ports:
+      - "8050:80"
+    depends_on: 
+      - "db-server"      
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - API_VERSION=v1
+      - APPLICATION_NAME=CNAB API
+      - APPLICATION_TITLE=CNAB API
+      - APPLICATION_DESCRIPTION=CNAB API (Services) - Desafio ByCoders  
+      - FILE_UPLOAD_MAX_SIZE=2097152  
+      - SQLSERVER_HOST=db-server
+      - SQLSERVER_USER=sa
+      - SQLSERVER_PASSWORD=z9CzyUwTe3NAkjX
+      - SQLSERVER_DATABASE=dbcnab
+      - SQLSERVER_SCHEMA=dbo
+      - SQLSERVER_ADDITIONAL_CONFIGS=MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=True;
+      - API_INTERNAL_USER=api-cnab-user
+      - API_INTERNAL_PASSWORD=VN403HYdpzbDtfphmBeU
+      - JWT_ISSUER=api-cnab-issuer
+      - JWT_AUDIENCE=api-cnab-audience
+    networks:
+      - localdev
