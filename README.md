@@ -1,6 +1,17 @@
 # :grinning: Overview :rocket:
 Este projeto é a resolução de um desafio realizado para uma vaga de desenvolvedor. O objetivo deste desafio é avaliar os conhecimentos técnicos em programação.
 
+# Tecnologias Utilizadas
+
+* [C# .NET 6.0](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+* [Bootstrap](https://getbootstrap.com/)
+* [JavaScript](https://www.javascript.com/)
+* [HTML](https://www.w3schools.com/html/)
+* [SQL Server](https://www.microsoft.com/pt-br/sql-server/sql-server-downloads)
+* [Git Hub](https://github.com/)
+* [TSQL](https://docs.microsoft.com/pt-br/sql/t-sql/language-reference?view=sql-server-ver15)
+* [Docker](https://docs.docker.com/engine/reference/builder/)
+
 # Instruções
 É necessário ter o [Docker](https://www.docker.com/get-started/) instalado na sua máquina juntamente com o [Docker Compose](https://docs.docker.com/compose/install/). Tenha certeza de ter ambos instalados, configurados e em execução na sua máquina. O projeto é composto por três componentes principais:
 
@@ -61,6 +72,10 @@ O front disponibiliza cinco funcionalidades:
 5. Status Database: Permite verificar se a infraestrutura de banco de dados está pronta para utilização.
 
 ![alt text](https://github.com/LucasScheid/desafio-dev/blob/main/imagens-doc/front-end.png)
+
+Segue abaixo a funcionalidade de Upload.
+
+![alt text](https://github.com/LucasScheid/desafio-dev/blob/main/imagens-doc/funcionalidade-upload.png)
 
 Para testar a funcionalidade de upload utilize o arquivo [CNAB.txt](https://github.com/LucasScheid/desafio-dev/blob/main/CNAB.txt)
 
