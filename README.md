@@ -1,9 +1,9 @@
-# Overview (Desafio Programação - Vaga Desenvolvedor)
+# Overview
 
-Este projeto é a resolução de um desafio realizado para uma vaga de desenvolvedor. O intuito deste teste é avaliar os conhecimentos técnicos em programação.
+Este projeto é a resolução de um desafio realizado para uma vaga de desenvolvedor. O intuito deste desafio é avaliar os conhecimentos técnicos em programação.
 
 # Instruções para execução do projeto via Docker Compose
-O projeto é composto por três componentes principais: 
+É necessário ter o [Docker](https://www.docker.com/get-started/) instalado na sua máquina juntamente com o [Docker Compose](https://docs.docker.com/compose/install/). O projeto é composto por três componentes principais: 
 
 1. Banco de Dados (SQL Server)
 2. API de Serviços
@@ -22,7 +22,7 @@ Continuar...
 
 # Referência
 
-Este desafio foi criado a partir das instruções deste desafio: https://github.com/ByCodersTec/desafio-dev
+Este desafio foi criado a partir das seguintes instruções: https://github.com/ByCodersTec/desafio-dev
 
 ---
 
