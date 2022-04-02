@@ -49,23 +49,20 @@ namespace cnap_app.Controllers
 
         public async Task<IActionResult> LojasIndex()
         {
+            string msg = "Nenhuma loja encontrada no momento. Favor realizar uma carga via upload e retornar nesta opção.";
+
             try
             {
                 IList<string> lojasFiltro = await BuscarLojasFiltro((await ObterTokenAutenticacao()).Token);
 
                 if (lojasFiltro != null && lojasFiltro.Count > 0)
-                {
                     ViewData["Resultado"] = lojasFiltro;
-                }
                 else
-                {
-                    ViewData["Mensagem"] = "Nenhuma loja encontrada no momento. Favor realizar uma carga via upload e retornar nesta opção.";
-                }
+                    ViewData["Mensagem"] = msg;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                _logger.LogError(ex.Message);
-                ViewData["Mensagem"] = ex.Message;
+                ViewData["Mensagem"] = msg;
             }
 
             return View();
@@ -93,6 +90,8 @@ namespace cnap_app.Controllers
 
         public async Task<IActionResult> TiposTransacaoIndex()
         {
+            string msg = "Nenhum registro encontrado.";
+
             try
             {
                 ICollection<TipoTransacao> resultTipoTransacao = await BuscarTiposTransacao((await ObterTokenAutenticacao()).Token);
@@ -103,15 +102,12 @@ namespace cnap_app.Controllers
                     ViewData["Resultado"] = tipoTransacaoResult;
                 }
                 else
-                {
-                    ViewData["Mensagem"] = "Nenhum registro encontrado.";
-                }
+                    ViewData["Mensagem"] = msg;
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                _logger.LogError(ex.Message);
-                ViewData["Mensagem"] = ex.Message;
+                ViewData["Mensagem"] = msg;
             }
 
             return View();
