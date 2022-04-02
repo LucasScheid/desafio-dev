@@ -8,7 +8,7 @@ Este projeto é a resolução de um desafio realizado para uma vaga de desenvolv
 2. API de Serviços
 3. Front-End
 
-Cada um destes componentes é representado por um container na stack. Todos eles serão criados e configurados automaticamente, não tem a necessidade de nenhum comando manual a não ser o próprio `docker compose up -d`. Inclusive o database utilizado no projeto também será criado e configurado de forma automática.
+Cada um destes componentes é representado por um container. Todos estes containers serão criados e configurados automaticamente, não existe a necessidade de nenhum comando manual a não ser o próprio `docker compose up -d`. Inclusive o database utilizado no projeto também será criado e configurado de forma automática.
 
 ## Clone o repositório
 Primeiro, crie uma pasta em seu computador local e, em seguida, entre nela e execute o comando `git clone` do projeto conforme abaixo. Pode ser utilizado qualquer terminal a sua escolha para esta tarefa ([Power Shell](https://docs.microsoft.com/pt-br/powershell/scripting/overview?view=powershell-7.2), [Git Bash](https://git-scm.com/downloads), [Windows Terminal](https://www.microsoft.com/pt-br/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab), etc):
@@ -21,6 +21,10 @@ Ao finalizar com sucesso o comando `git clone` entre na pasta `desafio-dev` com 
 ```
 cd desafio-dev
 ```
+
+## Estrutura de pastas do projeto
+Após entrar na pasta `desafio-dev` é possível observar a estrutura de pastas e arquivos. o arquivo `docker-compose.yml` possui toda a configuração da infraestrutura da aplicação. A pasta `infra-db` possui internamente todos os arquivos de configuração do banco SQL Server e também o arquivo `create-database.sql` que é executado de forma automática durante a execução do Sql Server. Dentro da pasta `cnab-api` está os projetos criados e a respectiva solution (`cnab-api.sln`).
+
 
 ## Executando o projeto
 Tenha certeza que o Docker está em execução na sua máquina local e execute o comando abaixo dentro da pasta `desafio-dev` e aguarde a finalização. Aproveite para tomar um :coffee: pois até baixar todas as imagens e executar o projeto pode demorar alguns minutos.
@@ -71,6 +75,8 @@ Abaixo um exemplo quando está 100% pronto.
 Abaixo um exemplo quando ainda está em execução, portanto é necessário aguardar.
 
 ![alt text](https://github.com/LucasScheid/desafio-dev/blob/main/imagens-doc/consulta-status-banco-nao-ok.png)
+
+Para testar a funcionalidade de upload utilize o arquivo [CNAB.txt] (https://github.com/LucasScheid/desafio-dev/blob/main/CNAB.txt)
 
 ## Acessando a API (Back-End)
 O acesso a API pode ser feito no endereço abaixo. Ela possui os métodos documentados na própria interface do [Swagger](https://swagger.io/).
