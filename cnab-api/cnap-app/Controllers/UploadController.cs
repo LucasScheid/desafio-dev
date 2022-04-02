@@ -1,6 +1,7 @@
 ﻿using cnab_entities.dto;
 using cnab_entities.models;
 using cnab_helpers.http;
+using cnap_app.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace cnap_app.Controllers
@@ -67,7 +68,8 @@ namespace cnap_app.Controllers
 
                         if (arquivoUpload.Valido)
                         {
-                            ViewData["Resultado"] = $"Arquivo {arquivo.FileName} carregado.";
+                            UploadResultado uploadResultado = new($"Arquivo {arquivo.FileName} carregado.", arquivoUpload.Resultado);
+                            ViewData["Resultado"] = uploadResultado;
                         }
                         else
                         {

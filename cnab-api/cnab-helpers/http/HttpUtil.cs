@@ -1,12 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace cnab_helpers.http
 {
@@ -56,20 +51,6 @@ namespace cnab_helpers.http
             else
             {
                 throw new Exception(GetHttErrorpMessage(response, "GetAsync<R>", url));
-            }
-        }
-
-        public async Task PutAsync<B>(string url, B corpoRequisicao, string token = null)
-        {
-            using HttpClient httpClient = GetHttpClient(token);
-
-            var content = ConvertObjectToByteArrayContent(corpoRequisicao);
-
-            var response = await httpClient.PutAsync(url, content);
-
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new Exception(GetHttErrorpMessage(response, "PutAsync<B>", url));
             }
         }
 
@@ -123,18 +104,6 @@ namespace cnab_helpers.http
             }
         }
 
-        public async Task PutAsync(string url, string token = null)
-        {
-            using HttpClient httpClient = GetHttpClient(token);
-
-            var response = await httpClient.PutAsync(url, null);
-
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new Exception(GetHttErrorpMessage(response, "PutAsync", url));
-            }
-        }
-
         public async Task GetAsync(string url, string token = null)
         {
             using HttpClient httpClient = GetHttpClient(token);
@@ -144,18 +113,6 @@ namespace cnab_helpers.http
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception(GetHttErrorpMessage(response, "GetAsync", url));
-            }
-        }
-
-        public async Task DeleteAsync(string url, string token = null)
-        {
-            using HttpClient httpClient = GetHttpClient(token);
-
-            var response = await httpClient.DeleteAsync(url);
-
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new Exception(GetHttErrorpMessage(response, "DeleteAsync", url));
             }
         }
 
@@ -171,7 +128,7 @@ namespace cnab_helpers.http
 
             var response = await httpClient.SendAsync(request);
             var responseContent = await response.Content.ReadAsStringAsync();
-            
+
             return JsonConvert.DeserializeObject<R>(responseContent);
         }
     }

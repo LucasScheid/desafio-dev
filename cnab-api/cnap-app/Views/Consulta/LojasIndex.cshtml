@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Lojas";
+}
+
+<p class="fs-5"><i class="fa-solid fa-store"></i> <span style="color:blue"><b>Lojas :</b></span> Escolha a loja e depois clique no botão <b>Consultar</b> para visualizar as movimentações.</p>
+<form method="post" enctype="multipart/form-data" asp-controller="Consulta" asp-action="Enviar">
+    <div class="form-group">
+        <input class="form-control form-control-sm" type="file" name="arquivos" />
+    </div>
+    <br>
+    <div class="form-group">        
+        <input class="btn btn-primary " type="submit" value="Consultar" />
+    </div>
+</form>

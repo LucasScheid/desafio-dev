@@ -1,4 +1,6 @@
-﻿@{
+﻿@using cnap_app.Models;
+
+@{
     ViewData["Title"] = "Upload";
 }
 
@@ -25,11 +27,13 @@
 <div class="container">
     @if (ViewData["Resultado"] != null)
     {
+        UploadResultado uploadResultado = (UploadResultado)ViewData["Resultado"];
+
         <p class="fs-5">
             <span style="color:green">
                 <b>Sucesso: </b>
             </span>
-            @ViewData["Resultado"]
+            @uploadResultado.Mensagem
         </p>
 
         <table class="table table-sm">
@@ -37,45 +41,32 @@
                 <tr>
                     <th scope="col" class="table-primary">Tipo</th>
                     <th scope="col" class="table-primary">Data</th>
+                    <th scope="col" class="table-primary">Hora</th>
                     <th scope="col" class="table-primary">Valor</th>
                     <th scope="col" class="table-primary">CPF</th>
                     <th scope="col" class="table-primary">Cartão</th>
-                    <th scope="col" class="table-primary">Hora</th>
                     <th scope="col" class="table-primary">Dono da Loja</th>
                     <th scope="col" class="table-primary">Nome da Loja</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>2019-03-01T00:00:00</td>
-                    <td>123.40</td>
-                    <td>09620676017</td>
-                    <td>4753****3153</td>
-                    <td>15:34:53</td>
-                    <td>JOÃO MACEDO</td>
-                    <td>BAR DO JOÃO</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>2019-03-01T00:00:00</td>
-                    <td>123.40</td>
-                    <td>09620676017</td>
-                    <td>4753****3153</td>
-                    <td>15:34:53</td>
-                    <td>JOÃO MACEDO</td>
-                    <td>BAR DO JOÃO</td>
-                </tr>
-                <tr>
-                     <th scope="row">3</th>
-                    <td>2019-03-01T00:00:00</td>
-                    <td>123.40</td>
-                    <td>09620676017</td>
-                    <td>4753****3153</td>
-                    <td>15:34:53</td>
-                    <td>JOÃO MACEDO</td>
-                    <td>BAR DO JOÃO</td>
-                </tr>
+
+                @{
+                    foreach (var item in uploadResultado.Registros)
+                    {
+                        <tr>
+                            <th scope="row">@item.Tipo</th>
+                            <td>@item.Data.ToString("dd/MM/yyyy")</td>
+                            <td>@item.Hora</td>
+                            <td>R$ @item.Valor</td>
+                            <td>@item.CPF</td>
+                            <td>@item.Cartao</td>
+                            <td>@item.DonoLoja</td>
+                            <td>@item.NomeLoja</td>
+                        </tr>
+                    }
+
+                }
             </tbody>
         </table>
 
@@ -83,4 +74,3 @@
 </div>
 
 <a class="btn btn-primary btn-sm" asp-area="" asp-controller="Upload" asp-action="Index">Voltar</a>
-
