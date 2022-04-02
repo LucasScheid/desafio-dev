@@ -1,12 +1,12 @@
-# Overview
+# Overview :rocket: :rocket:
 Este projeto é a resolução de um desafio realizado para uma vaga de desenvolvedor. O objetivo deste desafio é avaliar os conhecimentos técnicos em programação.
 
 # Instruções
 É necessário ter o [Docker](https://www.docker.com/get-started/) instalado na sua máquina juntamente com o [Docker Compose](https://docs.docker.com/compose/install/). Tenha certeza de ter ambos instalados, configurados e em execução na sua máquina. O projeto é composto por três componentes principais:
 
-1. **Banco de Dados (SQL Server)**
-2. **API de Serviços**
-3. **Front-End**
+**1. Banco de Dados (SQL Server)**
+**2. API de Serviços**
+**3. Front-End**
 
 Cada um destes componentes é representado por um container na stack. Todos eles serão criados e configurados automaticamente, não tem a necessidade de nenhum comando manual a não ser o próprio `docker compose up -d`. Inclusive o database utilizado no projeto também será criado e configurado de forma automática.
 
@@ -23,7 +23,7 @@ cd desafio-dev
 ```
 
 ## Executando o projeto
-Tenha certeza que o Docker está em execução na sua máquina local e execute o comando abaixo dentro da pasta `desafio-dev`:
+Tenha certeza que o Docker está em execução na sua máquina local e execute o comando abaixo dentro da pasta `desafio-dev` e aguarde a finalização. Aproveite para tomar um :coffee:
 ```
 docker compose up -d
 ```
@@ -50,11 +50,11 @@ http://localhost:8060/
 
 O front disponibiliza cinco funcionalidades:
 
-1. **Upload**: Permite escolher um arquivo para realizar a importação.
-2. **Lojas**: Exibe as movimentações da loja selecionada.
-3. **Geral**: Exibe todos os registros carregados no database via upload.
-4. **Tipos de Transação**: Exibe as informações sobre os tipos de transação.
-5. **Status Database**: Permite verificar se a infraestrutura de banco de dados está pronta para utilização.
+**1. Upload**: Permite escolher um arquivo para realizar a importação.
+**2. Lojas**: Exibe as movimentações da loja selecionada.
+**3. Geral**: Exibe todos os registros carregados no database via upload.
+**4. Tipos de Transação**: Exibe as informações sobre os tipos de transação.
+**5. Status Database**: Permite verificar se a infraestrutura de banco de dados está pronta para utilização.
 
 ![alt text](https://github.com/LucasScheid/desafio-dev/blob/main/imagens-doc/front-end.png)
 
@@ -63,7 +63,14 @@ A infraestrutura de banco de dados utilizada neste projeto, leva em média 100 s
 ```
 http://localhost:8060/Consulta/StatusDatabaseIndex
 ```
+
+Abaixo um exemplo quando está 100% pronto.
+
 ![alt text](https://github.com/LucasScheid/desafio-dev/blob/main/imagens-doc/consulta-status-banco-ok.png)
+
+Abaixo um exemplo quando ainda está em execução, portanto é necessário aguardar.
+
+![alt text](https://github.com/LucasScheid/desafio-dev/blob/main/imagens-doc/consulta-status-banco-nao-ok.png)
 
 ## Acessando a API (Back-End)
 O acesso a API pode ser feito no endereço abaixo. Ela possui os métodos documentados na própria interface do [Swagger](https://swagger.io/).
@@ -107,4 +114,4 @@ Este desafio foi criado a partir das seguintes instruções: https://github.com/
 
 ---
 
-Espero que gostem, obrigado pela oportunidade! :rocket:
+Espero que gostem, obrigado pela oportunidade! :pray: :raised_hands:
