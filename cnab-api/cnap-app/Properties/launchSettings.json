@@ -1,4 +1,4 @@
-﻿{
+{
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
@@ -10,16 +10,23 @@
   "profiles": {
     "cnap_app": {
       "commandName": "Project",
-      "dotnetRunMessages": true,
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:7130;http://localhost:5130",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "FILE_UPLOAD_MAX_SIZE": "2097152",
-        "URL_API": "http://localhost:8060/",
         "API_INTERNAL_USER": "api-cnab-user",
-        "API_INTERNAL_PASSWORD": "VN403HYdpzbDtfphmBeU"
-      }
+        "API_INTERNAL_PASSWORD": "VN403HYdpzbDtfphmBeU",
+        "URL_API": "http://localhost:8060/"
+      },
+      "applicationUrl": "https://localhost:7130;http://localhost:5130",
+      "dotnetRunMessages": true
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "publishAllPorts": true,
+      "useSSL": true
     }
   }
 }

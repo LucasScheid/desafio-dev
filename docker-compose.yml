@@ -43,3 +43,22 @@ services:
       - JWT_AUDIENCE=api-cnab-audience
     networks:
       - localdev
+      
+ cnab-app:
+    container_name: cnab-app
+    build:
+      context: cnab-app
+      dockerfile: cnab-app/Dockerfile
+    ports:
+      - "8060:80"
+    depends_on: 
+      - "db-server"
+      - "cnab-api"      
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - FILE_UPLOAD_MAX_SIZE=2097152  
+      - API_INTERNAL_USER=api-cnab-user
+      - API_INTERNAL_PASSWORD=VN403HYdpzbDtfphmBeU
+      - URL_API=http://cnab-api:80/      
+    networks:
+      - localdev
