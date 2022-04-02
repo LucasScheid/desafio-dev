@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Status Database";
+}
+
+<p class="fs-5"><i class="fa-solid fa-database"></i> <span style="color:blue"><b> Status Database :</b></span> Verifique abaixo se a infraestrutura de banco de dados está pronta para utilização.</p>
+<hr />
+
+<div class="container">
+    @if (ViewData["Resultado"] != null)
+    {
+        <p class="fs-5">           
+            <span style="color:green"><b> Sucesso :</b></span>
+            @ViewData["Resultado"]
+        </p>
+    }
+    else
+    {
+        <p class="fs-5">
+            <span style="color:orange"><b> Favor aguardar :</b></span>
+            @ViewData["Mensagem"]
+        </p>
+    }
+</div>
+
+
+<a class="btn btn-primary btn-sm" asp-area="" asp-controller="Consulta" asp-action="StatusDatabaseIndex">Verificar Novamente</a>

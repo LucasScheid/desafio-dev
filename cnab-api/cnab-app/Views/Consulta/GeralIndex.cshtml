@@ -1,0 +1,58 @@
+﻿@using cnab_entities.models
+@{
+    ViewData["Title"] = "Geral";
+}
+
+<p class="fs-5"><i class="fa-brands fa-searchengin"></i> <span style="color:blue"><b> Geral :</b></span> Seguem abaixo todos os registros carregados no database via upload.</p>
+<hr />
+<div class="container">
+    @if (ViewData["Resultado"] != null)
+    {
+        IList<CNABDatabase> result = (IList<CNABDatabase>)ViewData["Resultado"];
+
+        <table class="table table-sm text-center">
+            <thead>
+                <tr>
+                    <th scope="col" class="table-primary">Id Banco</th>
+                    <th scope="col" class="table-primary">Tipo</th>
+                    <th scope="col" class="table-primary">Data</th>
+                    <th scope="col" class="table-primary">Hora</th>
+                    <th scope="col" class="table-primary">Valor</th>
+                    <th scope="col" class="table-primary">CPF</th>
+                    <th scope="col" class="table-primary">Cartão</th>
+                    <th scope="col" class="table-primary">Dono da Loja</th>
+                    <th scope="col" class="table-primary">Nome da Loja</th>
+                    <th scope="col" class="table-primary">Data Inclusão Banco</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @{
+                    foreach (var item in result)
+                    {
+                       <tr>
+                            <th scope="row">@item.Id</th>
+                            <td>@item.Tipo</td>
+                            <td>@item.Data.ToString("dd/MM/yyyy")</td>
+                            <td>@item.Hora</td>
+                            <td>R$ @item.Valor</td>
+                            <td>@item.CPF</td>
+                            <td>@item.Cartao</td>
+                            <td>@item.DonoLoja</td>
+                            <td>@item.NomeLoja</td>
+                            <td>@item.DataInclusao.ToString("dd/MM/yyyy HH:mm:ss")</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="fs-5">
+            @ViewData["Mensagem"]
+        </p>
+    }
+</div>
+
+<a class="btn btn-primary btn-sm" asp-area="" asp-controller="Home" asp-action="Index">Voltar</a>

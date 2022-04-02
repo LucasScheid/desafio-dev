@@ -47,7 +47,7 @@ services:
  cnab-app:
     container_name: cnab-app
     build:
-      context: cnab-app
+      context: cnab-api
       dockerfile: cnab-app/Dockerfile
     ports:
       - "8060:80"

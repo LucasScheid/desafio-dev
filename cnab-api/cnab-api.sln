@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "cnab-helpers", "cnab-helper
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "cnab-contracts", "cnab-contracts\cnab-contracts.csproj", "{2B5C53CA-4410-45C9-AC81-0A293B45DD60}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "cnap-app", "cnap-app\cnap-app.csproj", "{452E9C7C-FD58-4ECC-ADAE-A7CB24234DA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "cnab-app", "cnab-app\cnab-app.csproj", "{452E9C7C-FD58-4ECC-ADAE-A7CB24234DA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

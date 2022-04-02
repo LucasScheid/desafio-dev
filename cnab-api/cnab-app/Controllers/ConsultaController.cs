@@ -71,8 +71,23 @@ namespace cnap_app.Controllers
             return View();
         }
 
-        public IActionResult GeralIndex()
+        public async Task<IActionResult> GeralIndex()
         {
+            try
+            {
+                IList<CNABDatabase> result = await BuscarTodosRegistros((await ObterTokenAutenticacao()).Token);
+
+                if (result != null && result.Count > 0)
+                    ViewData["Resultado"] = result;
+                else
+                    ViewData["Mensagem"] = "Nenhum registro encontrado.";
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                ViewData["Mensagem"] = ex.Message;
+            }
+
             return View();
         }
 
@@ -102,8 +117,24 @@ namespace cnap_app.Controllers
             return View();
         }
 
-        public IActionResult StatusDatabaseIndex()
+        public async Task<IActionResult> StatusDatabaseIndex()
         {
+            string mensagem = "A infraestrutura de banco ainda não está 100% disponível, aguarde alguns segundos e tente novamente por favor.";
+
+            try
+            {
+                ICollection<TipoTransacao> resultTipoTransacao = await BuscarTiposTransacao((await ObterTokenAutenticacao()).Token);
+
+                if (resultTipoTransacao != null && resultTipoTransacao.Count > 0)
+                    ViewData["Resultado"] = "Banco de Dados online e 100% disponível para utilização!";
+                else
+                    ViewData["Mensagem"] = mensagem;
+            }
+            catch (Exception)
+            {
+                ViewData["Mensagem"] = mensagem;
+            }
+
             return View();
         }
 
@@ -126,5 +157,11 @@ namespace cnap_app.Controllers
         {
             return await _httpUtil.GetAsync<OperacaoLojaResult>(string.Concat(_urlApi, "Operacoes/obter-dados-loja?nomeLoja=", nomeLoja), token);
         }
+
+        private async Task<IList<CNABDatabase>> BuscarTodosRegistros(string token)
+        {
+            return await _httpUtil.GetAsync<IList<CNABDatabase>>(string.Concat(_urlApi, "Operacoes/obter-todos-registros-cnab"), token);
+        }
+
     }
 }
