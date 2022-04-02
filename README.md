@@ -23,7 +23,7 @@ cd desafio-dev
 ```
 
 ## Estrutura de pastas do projeto
-Após entrar na pasta `desafio-dev` é possível observar a estrutura de pastas e arquivos. o arquivo `docker-compose.yml` possui toda a configuração da infraestrutura da aplicação. A pasta `infra-db` possui internamente todos os arquivos de configuração do banco SQL Server e também o arquivo `create-database.sql` que é executado de forma automática durante a execução do Sql Server. Dentro da pasta `cnab-api` está os projetos criados e a respectiva solution (`cnab-api.sln`).
+Após entrar na pasta `desafio-dev` é possível observar a estrutura de pastas e arquivos. o arquivo `docker-compose.yml` possui toda a configuração da infraestrutura da aplicação. A pasta `infra-db` possui internamente todos os arquivos de configuração do banco SQL Server e também o arquivo `create-database.sql` que é executado de forma automática durante a execução do Sql Server. Dentro da pasta `cnab-api` estão os projetos criados e a respectiva solution (`cnab-api.sln`) caso você queira abrir na sua IDE.
 
 
 ## Executando o projeto
@@ -62,6 +62,8 @@ O front disponibiliza cinco funcionalidades:
 
 ![alt text](https://github.com/LucasScheid/desafio-dev/blob/main/imagens-doc/front-end.png)
 
+Para testar a funcionalidade de upload utilize o arquivo [CNAB.txt](https://github.com/LucasScheid/desafio-dev/blob/main/CNAB.txt)
+
 ## :warning: Atenção, ponto Importante!!! :warning:
 A infraestrutura de banco de dados utilizada neste projeto, leva em média 100 segundos para estar totalmente pronta para utilização com as devidas tabelas criadas. Na maioria das vezes o front-end da aplicação já encontra-se disponível mas o banco ainda não. Utilize a funcionalidade disponível no front end (endereço abaixo) para verificar se o banco já está 100% pronto para utilização. Caso estiver tudo certo, pode começar a utilização das demais funcionalidades do front-end.
 ```
@@ -75,8 +77,6 @@ Abaixo um exemplo quando está 100% pronto.
 Abaixo um exemplo quando ainda está em execução, portanto é necessário aguardar.
 
 ![alt text](https://github.com/LucasScheid/desafio-dev/blob/main/imagens-doc/consulta-status-banco-nao-ok.png)
-
-Para testar a funcionalidade de upload utilize o arquivo [CNAB.txt] (https://github.com/LucasScheid/desafio-dev/blob/main/CNAB.txt)
 
 ## Acessando a API (Back-End)
 O acesso a API pode ser feito no endereço abaixo. Ela possui os métodos documentados na própria interface do [Swagger](https://swagger.io/).
