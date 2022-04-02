@@ -31,6 +31,12 @@ namespace cnab_api.Controllers
         {
             try
             {
+                if (fileList == null)
+                    return BadRequest("A lista de arquivos está nula!");
+
+                if (fileList.Count == 0)
+                    return BadRequest("A lista de arquivos está vazia!");
+
                 ArquivoUploadResult<CNAB> resultadoUpload = await _arquivoService.Upload(fileList);
                 CompleteArquivoUpload<CNAB>? cnab = resultadoUpload.CompleteArquivosUpload.FirstOrDefault();
 

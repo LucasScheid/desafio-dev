@@ -44,7 +44,7 @@ namespace cnab_services.arquivo
             {
                 if (!decimal.TryParse(valor, out _))
                 {
-                    _errosLinha.Add($"{indicadorLinha} O valor {textoCampo} é inválido. Valor enviado: {valor}");
+                    _errosLinha.Add($"{indicadorLinha} O campo {textoCampo} é inválido. Valor enviado: {valor}");
                 }
             }
         }
@@ -59,7 +59,7 @@ namespace cnab_services.arquivo
             {
                 if (!DateTime.TryParseExact(valor, formatoData, CultureInfo.InvariantCulture, DateTimeStyles.None, out _))
                 {
-                    _errosLinha.Add($"{indicadorLinha} O valor {textoCampo} é inválido. Valor enviado: {valor}");
+                    _errosLinha.Add($"{indicadorLinha} O campo {textoCampo} é inválido. Valor enviado: {valor}");
                 }
             }
         }
@@ -74,7 +74,7 @@ namespace cnab_services.arquivo
             {
                 if (!DateTime.TryParseExact(valor, formatoHora, CultureInfo.InvariantCulture, DateTimeStyles.None, out _))
                 {
-                    _errosLinha.Add($"{indicadorLinha} O valor {textoCampo} é inválido. Valor enviado: {valor}");
+                    _errosLinha.Add($"{indicadorLinha} O campo {textoCampo} é inválido. Valor enviado: {valor}");
                 }
             }
         }
@@ -89,19 +89,19 @@ namespace cnab_services.arquivo
             {
                 if (valor.Contains('.') || valor.Contains(','))
                 {
-                    _errosLinha.Add($"{indicadorLinha} O valor {textoCampo} NÃO pode conter ponto(.) e nem vírgula(,) pois é inteiro. Valor enviado: {valor}");
+                    _errosLinha.Add($"{indicadorLinha} O campo {textoCampo} NÃO pode conter ponto(.) e nem vírgula(,) pois é inteiro. Valor enviado: {valor}");
                     return;
                 }
 
                 if (!int.TryParse(valor, out int campoInt))
                 {
-                    _errosLinha.Add($"{indicadorLinha} O valor {textoCampo} é inválido. Valor enviado: {valor}");
+                    _errosLinha.Add($"{indicadorLinha} O campo {textoCampo} é inválido. Valor enviado: {valor}");
                 }
                 else
                 {
                     if (validarMaiorZero && campoInt <= 0)
                     {
-                        _errosLinha.Add($"{indicadorLinha} O valor {textoCampo} precisa ser maior que zero. Valor enviado: {valor}");
+                        _errosLinha.Add($"{indicadorLinha} O campo {textoCampo} precisa ser maior que zero. Valor enviado: {valor}");
                     }
                 }
             }

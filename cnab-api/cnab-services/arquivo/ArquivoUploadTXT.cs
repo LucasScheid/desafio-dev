@@ -41,7 +41,7 @@ namespace cnab_services.arquivo
             int tipo = int.Parse(tipoTransacaoEnviado);
 
             if (!tiposTransacao.Any(t => t.Id == tipo))
-                AddErrosLinha($"{ObterIndicadorLinha(nroLinha)} O valor {NomeCamposCNAB.TIPO} é inválido. Valor enviado: {tipo}");
+                AddErrosLinha($"{ObterIndicadorLinha(nroLinha)} O campo {NomeCamposCNAB.TIPO} é inválido. Valor enviado: {tipo}");
         }
 
         public async Task<bool> LinhasValidas()

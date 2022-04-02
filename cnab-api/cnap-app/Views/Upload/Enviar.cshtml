@@ -1,0 +1,89 @@
+﻿@{
+    ViewData["Title"] = "Upload";
+}
+
+<p class="fs-4"> <span style="color:blue"><b>Resultado:</b></span> Upload</p>
+<hr>
+<div class="container">
+    @if (ViewData["Erro"] != null)
+    {
+        <p class="fs-5">
+            <span style="color:red">
+                <b>Erro: </b>
+            </span>
+
+            @{
+                foreach (var item in ViewData["Erro"] as List<string>)
+                {
+                    @item
+                    <br>
+                }
+            }
+
+            @*@ViewData["Erro"]*@
+        </p>
+    }
+</div>
+
+<div class="container">
+    @if (ViewData["Resultado"] != null)
+    {
+        <p class="fs-5">
+            <span style="color:green">
+                <b>Sucesso: </b>
+            </span>
+            @ViewData["Resultado"]
+        </p>
+
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th scope="col" class="table-primary">Tipo</th>
+                    <th scope="col" class="table-primary">Data</th>
+                    <th scope="col" class="table-primary">Valor</th>
+                    <th scope="col" class="table-primary">CPF</th>
+                    <th scope="col" class="table-primary">Cartão</th>
+                    <th scope="col" class="table-primary">Hora</th>
+                    <th scope="col" class="table-primary">Dono da Loja</th>
+                    <th scope="col" class="table-primary">Nome da Loja</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>2019-03-01T00:00:00</td>
+                    <td>123.40</td>
+                    <td>09620676017</td>
+                    <td>4753****3153</td>
+                    <td>15:34:53</td>
+                    <td>JOÃO MACEDO</td>
+                    <td>BAR DO JOÃO</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>2019-03-01T00:00:00</td>
+                    <td>123.40</td>
+                    <td>09620676017</td>
+                    <td>4753****3153</td>
+                    <td>15:34:53</td>
+                    <td>JOÃO MACEDO</td>
+                    <td>BAR DO JOÃO</td>
+                </tr>
+                <tr>
+                     <th scope="row">3</th>
+                    <td>2019-03-01T00:00:00</td>
+                    <td>123.40</td>
+                    <td>09620676017</td>
+                    <td>4753****3153</td>
+                    <td>15:34:53</td>
+                    <td>JOÃO MACEDO</td>
+                    <td>BAR DO JOÃO</td>
+                </tr>
+            </tbody>
+        </table>
+
+    }
+</div>
+
+<a class="btn btn-primary btn-sm" asp-area="" asp-controller="Upload" asp-action="Index">Voltar</a>
+
