@@ -2,13 +2,32 @@
     ViewData["Title"] = "Lojas";
 }
 
-<p class="fs-5"><i class="fa-solid fa-store"></i> <span style="color:blue"><b>Lojas :</b></span> Escolha a loja e depois clique no botão <b>Consultar</b> para visualizar as movimentações.</p>
-<form method="post" enctype="multipart/form-data" asp-controller="Consulta" asp-action="Enviar">
-    <div class="form-group">
-        <input class="form-control form-control-sm" type="file" name="arquivos" />
-    </div>
-    <br>
-    <div class="form-group">        
-        <input class="btn btn-primary " type="submit" value="Consultar" />
-    </div>
-</form>
+<p class="fs-5"><i class="fa-solid fa-store"></i> <span style="color:blue"><b> Lojas :</b></span> Escolha a loja e depois clique no botão <b>Consultar</b> para visualizar as movimentações.</p>
+<hr />
+@if (ViewData["Resultado"] != null)
+{
+    <form method="get" asp-controller="Consulta" asp-action="LojasResultado">
+        <div class="form-group">
+            <select id="idLojaFiltro" name="lojaFiltro">
+                @foreach (var item in (List<string>)ViewData["Resultado"])
+                {
+                    <option value="@item">@item</option>
+                }
+            </select>
+        </div>
+        <br>
+        <div class="form-group">
+            <input class="btn btn-primary " type="submit" value="Consultar" />
+        </div>
+    </form>
+}
+else
+{
+    <p class="fs-5">
+        <span style="color:green">
+            <b>Atenção: </b>
+        </span>
+        @ViewData["Mensagem"]
+    </p>
+    <a class="btn btn-primary btn-sm" asp-area="" asp-controller="Home" asp-action="Index">Voltar</a>
+}

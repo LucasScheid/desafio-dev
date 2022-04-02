@@ -1,14 +1,47 @@
-﻿@{
+﻿@using cnap_app.Models;
+
+@{
     ViewData["Title"] = "Tipos de Transação";
 }
 
-<p class="fs-5"><i class="fa-regular fa-newspaper"></i> <span style="color:blue"><b>Tipos de Transação :</b></span> Seguem abaixo todos os tipos de transação disponíveis. <b>Enviar</b>.</p>
-@*<form method="post" enctype="multipart/form-data" asp-controller="Upload" asp-action="Enviar">
-    <div class="form-group">
-        <input class="form-control form-control-sm" type="file" name="arquivos" />
-    </div>
-    <br>
-    <div class="form-group">        
-        <input class="btn btn-primary " type="submit" value="Enviar" />
-    </div>
-</form>*@
+<p class="fs-5"><i class="fa-regular fa-newspaper"></i> <span style="color:blue"><b> Tipos de Transação :</b></span> Seguem abaixo todos os tipos de transação cadastrados.</p>
+
+<div class="container">
+    @if (ViewData["Resultado"] != null)
+    {
+        TipoTransacaoResult result = (TipoTransacaoResult)ViewData["Resultado"];
+
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th scope="col" class="table-primary">Id</th>
+                    <th scope="col" class="table-primary">Descrição</th>
+                    <th scope="col" class="table-primary">Natureza</th>
+                    <th scope="col" class="table-primary">Sinal</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @{
+                    foreach (var item in result.Registros)
+                    {
+                        <tr>
+                            <th scope="row">@item.Id</th>
+                            <td>@item.Descricao</td>
+                            <td>@item.Natureza</td>
+                            <td>@item.Sinal</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="fs-5">
+            @ViewData["Mensagem"]
+        </p>
+    }
+</div>
+
+<a class="btn btn-primary btn-sm" asp-area="" asp-controller="Home" asp-action="Index">Voltar</a>

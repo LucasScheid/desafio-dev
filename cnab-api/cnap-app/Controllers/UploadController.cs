@@ -83,6 +83,7 @@ namespace cnap_app.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message);
                 _erros.Add(ex.Message);
                 ViewData["Erro"] = _erros;
             }

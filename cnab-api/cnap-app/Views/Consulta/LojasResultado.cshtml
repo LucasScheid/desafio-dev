@@ -1,0 +1,80 @@
+﻿@using cnab_entities.dto
+@using cnap_app.Models;
+
+@{
+    ViewData["Title"] = "Lojas";
+}
+
+<p class="fs-5"><i class="fa-solid fa-store"></i> <span style="color:blue"><b> Lojas :</b></span> Resultado da consulta.</p>
+<hr />
+<div class="container">
+    @if (ViewData["Resultado"] != null)
+    {
+        OperacaoLojaResult result = (OperacaoLojaResult)ViewData["Resultado"];
+
+        @*<p class="fs-6"><span style="color:blue"><b> Nome da Loja :</b></span> @result.NomeLoja</p>
+        <p class="fs-6"><span style="color:blue"><b> Saldo : </b></span>R$ @result.Saldo</p>*@
+
+
+        <table class="table table-sm text-center">
+            <thead>
+                <tr>
+                    <th scope="col" class="table-success" colspan="2">Dados da Loja</th>                    
+                </tr>
+                <tr>
+                    <th scope="col" class="table-success">Nome</th>
+                    <th scope="col" class="table-success">Saldo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">@result.NomeLoja</th>
+                    <td>R$ @result.Saldo</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <table class="table table-sm text-center">
+            <thead>
+                <tr>
+                    <th scope="col" class="table-primary" colspan="8">Movimentações Realizadas</th>                    
+                </tr>
+                <tr>
+                    <th scope="col" class="table-primary">Operação</th>
+                    <th scope="col" class="table-primary">Natureza</th>
+                    <th scope="col" class="table-primary">Valor</th>
+                    <th scope="col" class="table-primary">Data</th>
+                    <th scope="col" class="table-primary">Hora</th>
+                    <th scope="col" class="table-primary">CPF</th>
+                    <th scope="col" class="table-primary">Cartão</th>
+                    <th scope="col" class="table-primary">Dono da Loja</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @{
+                    foreach (var item in result.Operacoes)
+                    {
+                        <tr>
+                            <th scope="row">@item.Operacao</th>
+                            <td>@item.Natureza</td>
+                            <td>R$ @item.Valor</td>
+                            <td>@item.Data.ToString("dd/MM/yyyy")</td>
+                            <td>@item.Hora</td>
+                            <td>@item.CPF</td>
+                            <td>@item.Cartao</td>
+                            <td>@item.DonoLoja</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="fs-5">
+            @ViewData["Mensagem"]
+        </p>
+    }
+</div>
+<a class="btn btn-primary btn-sm" asp-area="" asp-controller="Consulta" asp-action="LojasIndex">Voltar</a>
