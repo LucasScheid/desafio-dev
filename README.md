@@ -4,25 +4,25 @@ Este projeto é a resolução de um desafio realizado para uma vaga de desenvolv
 # Instruções
 É necessário ter o [Docker](https://www.docker.com/get-started/) instalado na sua máquina juntamente com o [Docker Compose](https://docs.docker.com/compose/install/). Tenha certeza de ter ambos instalados, configurados e em execução na sua máquina. O projeto é composto por três componentes principais:
 
-1. Banco de Dados (SQL Server)
-2. API de Serviços
-3. Front-End
+1. **Banco de Dados (SQL Server)**
+2. **API de Serviços**
+3. **Front-End**
 
 Cada um destes componentes é representado por um container na stack. Todos eles serão criados e configurados automaticamente, não tem a necessidade de nenhum comando manual a não ser o próprio `docker compose up -d`. Inclusive o database utilizado no projeto também será criado e configurado de forma automática.
 
 ## Clone o repositório
-Primeiro, crie uma pasta em seu computador local e, em seguida, entre nela e execute o comando git clone do projeto conforme abaixo. Pode ser utilizado qualquer terminal a sua escolha para esta tarefa ([Power Shell](https://docs.microsoft.com/pt-br/powershell/scripting/overview?view=powershell-7.2), [Git Bash](https://git-scm.com/downloads), [Windows Terminal](https://www.microsoft.com/pt-br/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab), etc):
+Primeiro, crie uma pasta em seu computador local e, em seguida, entre nela e execute o comando `git clone` do projeto conforme abaixo. Pode ser utilizado qualquer terminal a sua escolha para esta tarefa ([Power Shell](https://docs.microsoft.com/pt-br/powershell/scripting/overview?view=powershell-7.2), [Git Bash](https://git-scm.com/downloads), [Windows Terminal](https://www.microsoft.com/pt-br/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab), etc):
 ```
 git clone https://github.com/LucasScheid/desafio-dev.git
 ```
 
 ## Entre na pasta do projeto
-Ao finalizar com sucesso o comando git clone entre na pasta `desafio-dev` com o comando abaixo:
+Ao finalizar com sucesso o comando `git clone` entre na pasta `desafio-dev` com o comando abaixo:
 ```
 cd desafio-dev
 ```
 
-## Executando o projeto completo
+## Executando o projeto
 Tenha certeza que o Docker está em execução na sua máquina local e execute o comando abaixo dentro da pasta `desafio-dev`:
 ```
 docker compose up -d
@@ -34,6 +34,13 @@ Após o término da execução do comando `docker compose up -d` verifique o sta
 ```
 docker compose ps -a
 ```
+![alt text](https://github.com/LucasScheid/desafio-dev/blob/main/imagens-doc/docker-ps-a.png)
+
+
+Consulta através da interface do docker desktop:
+
+![alt text](https://github.com/LucasScheid/desafio-dev/blob/main/imagens-doc/stack-up.png)
+
 
 ## Acessando o Front-End
 Após a finalização do comando para execução completa de todos os componentes do projeto, o acesso ao front pode ser feito no endereço abaixo.
@@ -49,11 +56,14 @@ O front disponibiliza cinco funcionalidades:
 4. **Tipos de Transação**: Exibe as informações sobre os tipos de transação.
 5. **Status Database**: Permite verificar se a infraestrutura de banco de dados está pronta para utilização.
 
+![alt text](https://github.com/LucasScheid/desafio-dev/blob/main/imagens-doc/front-end.png)
+
 ## Atenção, ponto Importante!!!
 A infraestrutura de banco de dados utilizada neste projeto, leva em média 100 segundos para estar totalmente pronta para utilização com as devidas tabelas criadas. Na maioria das vezes o front-end da aplicação já encontra-se disponível mas o banco ainda não. Utilize a funcionalidade disponível no endereço abaixo para verificar se o banco já está 100% pronto para utilização. Caso estiver tudo certo, pode começar a utilização das demais funcionalidades do front-end.
 ```
 http://localhost:8060/Consulta/StatusDatabaseIndex
 ```
+![alt text](https://github.com/LucasScheid/desafio-dev/blob/main/imagens-doc/consulta-status-banco-ok.png)
 
 ## Acessando a API (Back-End)
 O acesso a API pode ser feito no endereço abaixo. Ela possui os métodos documentados na própria interface do [Swagger](https://swagger.io/).
@@ -72,6 +82,7 @@ Para o payload, utilize o JSON abaixo:
   "senha": "VN403HYdpzbDtfphmBeU"
 }
 ```
+![alt text](https://github.com/LucasScheid/desafio-dev/blob/main/imagens-doc/api-swagger.png)
 
 ## Acessando o Banco de Dados (SQL Server)
 Caso necessário, o banco de dados SQL Server está disponível para ser acessado através do endereço abaixo. A porta utilizada é a padrão 1433.
@@ -87,8 +98,8 @@ password: z9CzyUwTe3NAkjX
 database: dbcnab
 ```
 
-## Teste imagem
-![alt text](https://super.abril.com.br/wp-content/uploads/2019/06/site_temponatureza.png)
+Segue abaixo as duas tabelas do projeto **arquivo** e **tipo_transacao** com a sua respectiva estrutura:
+![alt text](https://github.com/LucasScheid/desafio-dev/blob/main/imagens-doc/tabelas-banco.png)
 
 # Referência
 
@@ -96,4 +107,4 @@ Este desafio foi criado a partir das seguintes instruções: https://github.com/
 
 ---
 
-Espero que gostem, obrigado pela oportunidade!
+Espero que gostem, obrigado pela oportunidade! :rocket:
