@@ -73,7 +73,7 @@ namespace cnap_app.Controllers
                         }
                         else
                         {
-                            foreach  (string erro in arquivoUpload.Erros)
+                            foreach (string erro in arquivoUpload.Erros)
                                 _erros.Add(erro);
 
                             ViewData["Erro"] = _erros;
@@ -98,7 +98,7 @@ namespace cnap_app.Controllers
 
         private async Task<ArquivoUploadResult<CNAB>> EnviarArquivoUpload(IFormFile arquivo, string token)
         {
-            return await _httpUtil.PostAsyncMultipart<ArquivoUploadResult<CNAB>>(string.Concat(_urlApi, "Operacoes/upload-arquivo-cnab"), arquivo, token); 
+            return await _httpUtil.PostAsyncMultipart<ArquivoUploadResult<CNAB>>(string.Concat(_urlApi, "Operacoes/upload-arquivo-cnab"), arquivo, token);
         }
 
     }

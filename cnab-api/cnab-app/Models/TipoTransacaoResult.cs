@@ -7,7 +7,7 @@ namespace cnap_app.Models
         public ICollection<TipoTransacao> Registros { get; set; }
 
         public TipoTransacaoResult(ICollection<TipoTransacao> registros)
-        {        
+        {
             Registros = registros;
         }
     }

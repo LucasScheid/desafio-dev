@@ -31,7 +31,7 @@
         "JWT_ISSUER": "api-cnab-issuer",
         "JWT_AUDIENCE": "api-cnab-audience"
       },
-      "applicationUrl": "https://localhost:7060;http://localhost:8050",
+      "applicationUrl": "http://localhost:8050",
       "dotnetRunMessages": true
     },    
     "Docker": {

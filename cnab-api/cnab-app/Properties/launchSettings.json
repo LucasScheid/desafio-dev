@@ -18,7 +18,7 @@
         "API_INTERNAL_PASSWORD": "VN403HYdpzbDtfphmBeU",
         "URL_API": "http://localhost:8050/"
       },
-      "applicationUrl": "https://localhost:8060;http://localhost:7131",
+      "applicationUrl": "http://localhost:8060",
       "dotnetRunMessages": true
     },
     "Docker": {

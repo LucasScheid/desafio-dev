@@ -8,7 +8,6 @@ Este projeto é a resolução de um desafio realizado para uma vaga de desenvolv
 * [JavaScript](https://www.javascript.com/)
 * [HTML](https://www.w3schools.com/html/)
 * [SQL Server](https://www.microsoft.com/pt-br/sql-server/sql-server-downloads)
-* [Git Hub](https://github.com/)
 * [TSQL](https://docs.microsoft.com/pt-br/sql/t-sql/language-reference?view=sql-server-ver15)
 * [Docker](https://docs.docker.com/engine/reference/builder/)
 * [JWT](https://jwt.io/)
@@ -39,7 +38,7 @@ cd desafio-dev
 Após entrar na pasta `desafio-dev` é possível observar a estrutura de pastas e arquivos. o arquivo `docker-compose.yml` possui toda a configuração da infraestrutura da aplicação. A pasta `infra-db` possui internamente todos os arquivos de configuração do banco SQL Server e também o arquivo `create-database.sql` que é executado de forma automática durante a execução do Sql Server. Dentro da pasta `cnab-api` estão os projetos criados e a respectiva solution (`cnab-api.sln`) caso você queira abrir na sua IDE.
 
 ## Executando o projeto
-Tenha certeza que o Docker está em execução na sua máquina local e execute o comando abaixo dentro da pasta `desafio-dev` e aguarde a finalização. Aproveite para tomar um :coffee: pois até baixar todas as imagens e executar o projeto pode demorar alguns minutos. Essa demora é normal na primeira execução pois todas as imagens serão baixadas na sua máquina local (caso você ainda não tiver elas instaladas). As próximas execuções serão mais rápidas pois as imagens já estarão baixadas na sua máquina local.
+Tenha certeza que o Docker está em execução na sua máquina local e execute o comando abaixo dentro da pasta `desafio-dev` e aguarde a finalização. Aproveite para tomar um :coffee: pois até baixar todas as imagens e executar o projeto pode demorar alguns minutos. Essa demora é normal na primeira execução pois todas as imagens serão baixadas na sua máquina local (caso você ainda não tiver elas baixadas). As próximas execuções serão mais rápidas pois as imagens já estarão baixadas na sua máquina local.
 ```
 docker compose up -d
 ```
@@ -63,7 +62,7 @@ A consulta pode ser feita através da interface gráfica do [Docker Desktop](htt
 ## Acessando o Front-End
 Após a finalização do comando `docker compose up -d`, o acesso ao front pode ser feito no endereço abaixo:
 ```
-https://localhost:8060/
+http://localhost:8060/
 ```
 
 O front disponibiliza cinco funcionalidades:
@@ -85,7 +84,7 @@ Para testar a funcionalidade de upload utilize o arquivo [CNAB.txt](https://gith
 ## :warning: Atenção, ponto Importante!!! :warning:
 A infraestrutura de banco de dados utilizada neste projeto, leva em média 100 segundos para estar totalmente pronta para utilização com as devidas tabelas criadas. Na maioria das vezes o front-end da aplicação já encontra-se disponível mas o banco ainda não. Utilize a funcionalidade disponível no front end (endereço abaixo) para verificar se o banco já está 100% pronto para utilização. Caso estiver tudo certo, pode começar a utilização das demais funcionalidades do front-end.
 ```
-https://localhost:8060/Consulta/StatusDatabaseIndex
+http://localhost:8060/Consulta/StatusDatabaseIndex
 ```
 
 Abaixo um exemplo quando está 100% pronto.
