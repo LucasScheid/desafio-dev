@@ -1,5 +1,5 @@
 # :grinning: Overview :rocket:
-Este projeto é a resolução de um desafio realizado para uma vaga de desenvolvedor. O objetivo deste desafio é avaliar os conhecimentos técnicos em programação.
+Este projeto é a resolução de um desafio realizado para uma vaga de desenvolvedor. O objetivo deste desafio é avaliar os conhecimentos técnicos em programação. Este desafio foi implementado a partir das instruções deste [documento](https://github.com/ByCodersTec/desafio-dev).
 
 # Tecnologias Utilizadas
 
@@ -136,7 +136,7 @@ Segue abaixo as duas tabelas do projeto **arquivo** e **tipo_transacao** com a s
 ## Executando os testes de unidade
 Para executar os testes, você vai precisar da CLI do .NET, caso não tiver [neste link](https://docs.microsoft.com/pt-br/dotnet/core/tools/) tem as instruções para a instalação. Uma outra opção seria abrir a solution via [Visual Studio](https://visualstudio.microsoft.com/pt-br/vs/community/) e executar o projeto de testes. A partir da pasta raiza `desafio-dev` execute o seguinte comando para entrar na pasta para execução dos testes de unidade: 
 ```
-cd cnab-api\cnab-unit-tests
+cd cnab-api/cnab-unit-tests/
 ```
 
 Após entrar nesta pasta, execute o comando abaixo:
@@ -147,10 +147,16 @@ Para obter mais detalhes sobre os testes, o mesmo comando pode ser usado com as 
 ```
 dotnet test -l "console;verbosity=normal"
 ```
+Abaixo segue o resultado da execução:
+![alt text](https://github.com/LucasScheid/desafio-dev/blob/main/imagens-doc/unit-test-result.png)
 
 # Referência
 
-Este desafio foi criado a partir das seguintes instruções: https://github.com/ByCodersTec/desafio-dev
+Abaixo, seguem algumas referências de documentação utilizadas para construção do projeto:
+
+* [Initialize MS SQL in Docker container - Create database at startup] (https://www.softwaredeveloper.blog/initialize-mssql-in-docker-container)
+* [Mssql-docker-initialization-demo](https://github.com/tometchy/Mssql-docker-initialization-demo)
+* [Upload arquivos em ASP.NET Core](https://docs.microsoft.com/pt-br/aspnet/core/mvc/models/file-uploads?view=aspnetcore-6.0)
 
 ---
 
