@@ -59,7 +59,7 @@
                             <th scope="row">@item.Tipo</th>
                             <td>@item.Data.ToString("dd/MM/yyyy")</td>
                             <td>@item.Hora</td>
-                            <td>R$ @item.Valor</td>
+                            <td>R$ @string.Format("{0:N}",@item.Valor)</td>
                             <td>@item.CPF</td>
                             <td>@item.Cartao</td>
                             <td>@item.DonoLoja</td>

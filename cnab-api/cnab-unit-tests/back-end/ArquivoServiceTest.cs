@@ -24,7 +24,7 @@ namespace cnab_unit_tests.back_end
         }
 
         [Fact]
-        public async Task ExtensaoArquivoInvalida()
+        public async Task ArquivoComExtensaoInvalida()
         {
             CompleteArquivoUpload<CNAB> completeArquivoUpload = await TestarLinha("CNAB0001.csv", "3201903010000014200096206760174753****3153153453JOÃO MACEDO   BAR DO JOÃO       ");
 
@@ -88,7 +88,7 @@ namespace cnab_unit_tests.back_end
         }
 
         [Fact]
-        public async Task SuperaTamanhoMaximo()
+        public async Task ArquivoSuperaTamanhoMaximo()
         {
             string linha = "3201903010000014200096206760174753****3153153453JOÃO MACEDO   BAR DO JOÃO       ";
 
@@ -103,7 +103,7 @@ namespace cnab_unit_tests.back_end
         }
 
         [Fact]
-        public async Task LinhaEmBranco()
+        public async Task ArquivoComLinhaEmBranco()
         {
             string linha = "3201903010000014200096206760174753****3153153453JOÃO MACEDO   BAR DO JOÃO       ";
 
@@ -118,6 +118,78 @@ namespace cnab_unit_tests.back_end
             Assert.True((!completeArquivoUpload.Valido && completeArquivoUpload.Erros.Any(e => e.Contains("A LINHA está em branco"))));
         }
 
+        [Fact]
+        public async Task TipoTransacaoEmBranco()
+        {
+            CompleteArquivoUpload<CNAB> completeArquivoUpload = await TestarLinha("CNAB0011.txt", " 201903010000014200096206760174753****3153153453JOÃO MACEDO   BAR DO JOÃO       ");
+
+            Assert.True((!completeArquivoUpload.Valido && completeArquivoUpload.Erros.Any(e => e.Contains("TIPO está em branco"))));
+        }
+
+        [Fact]
+        public async Task DataEmBranco()
+        {
+            CompleteArquivoUpload<CNAB> completeArquivoUpload = await TestarLinha("CNAB0012.txt", "3        0000014200096206760174753****3153153453JOÃO MACEDO   BAR DO JOÃO       ");
+
+            Assert.True((!completeArquivoUpload.Valido && completeArquivoUpload.Erros.Any(e => e.Contains("DATA está em branco"))));
+        }
+
+        [Fact]
+        public async Task ValorEmBranco()
+        {
+            CompleteArquivoUpload<CNAB> completeArquivoUpload = await TestarLinha("CNAB0013.txt", "320190301          096206760174753****3153153453JOÃO MACEDO   BAR DO JOÃO       ");
+
+            Assert.True((!completeArquivoUpload.Valido && completeArquivoUpload.Erros.Any(e => e.Contains("VALOR está em branco"))));
+        }
+
+        [Fact]
+        public async Task ValorZerado()
+        {
+            CompleteArquivoUpload<CNAB> completeArquivoUpload = await TestarLinha("CNAB0014.txt", "3201903010000000000096206760174753****3153153453JOÃO MACEDO   BAR DO JOÃO       ");
+
+            Assert.True((!completeArquivoUpload.Valido && completeArquivoUpload.Erros.Any(e => e.Contains("VALOR deve ser maior que zero"))));
+        }
+
+        [Fact]
+        public async Task CPFEmBranco()
+        {
+            CompleteArquivoUpload<CNAB> completeArquivoUpload = await TestarLinha("CNAB0015.txt", "3201903010000014200           4753****3153153453JOÃO MACEDO   BAR DO JOÃO       ");
+
+            Assert.True((!completeArquivoUpload.Valido && completeArquivoUpload.Erros.Any(e => e.Contains("CPF está em branco"))));
+        }
+
+        [Fact]
+        public async Task CartaoEmBranco()
+        {
+            CompleteArquivoUpload<CNAB> completeArquivoUpload = await TestarLinha("CNAB0016.txt", "320190301000001420009620676017            153453JOÃO MACEDO   BAR DO JOÃO       ");
+
+            Assert.True((!completeArquivoUpload.Valido && completeArquivoUpload.Erros.Any(e => e.Contains("CARTAO está em branco"))));
+        }
+
+        [Fact]
+        public async Task DonoLojaEmBranco()
+        {
+            CompleteArquivoUpload<CNAB> completeArquivoUpload = await TestarLinha("CNAB0017.txt", "3201903010000014200096206760174753****3153153453              BAR DO JOÃO       ");
+
+            Assert.True((!completeArquivoUpload.Valido && completeArquivoUpload.Erros.Any(e => e.Contains("DONO_LOJA está em branco"))));
+        }
+
+        [Fact]
+        public async Task NomeLojaEmBranco()
+        {
+            CompleteArquivoUpload<CNAB> completeArquivoUpload = await TestarLinha("CNAB0018.txt", "3201903010000014200096206760174753****3153153453JOÃO MACEDO                     ");
+
+            Assert.True((!completeArquivoUpload.Valido && completeArquivoUpload.Erros.Any(e => e.Contains("NOME_LOJA está em branco"))));
+        }
+
+        [Fact]
+        public async Task HoraEmBranco()
+        {
+            CompleteArquivoUpload<CNAB> completeArquivoUpload = await TestarLinha("CNAB0019.txt", "3201903010000014200096206760174753****3153      JOÃO MACEDO   BAR DO JOÃO       ");
+
+            Assert.True((!completeArquivoUpload.Valido && completeArquivoUpload.Erros.Any(e => e.Contains("HORA está em branco"))));
+        }
+        
         private static void AjustarVariaveisAmbiente()
         {
             Environment.SetEnvironmentVariable("FILE_UPLOAD_MAX_SIZE", "2097152");

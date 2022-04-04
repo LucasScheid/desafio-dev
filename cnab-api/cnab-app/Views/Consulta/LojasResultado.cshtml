@@ -25,7 +25,7 @@
             <tbody>
                 <tr>
                     <th scope="row">@result.NomeLoja</th>
-                    <td>R$ @result.Saldo</td>
+                    <td>R$ @string.Format("{0:N}",@result.Saldo)</td>
                 </tr>
             </tbody>
         </table>
@@ -53,8 +53,8 @@
                     {
                         <tr>
                             <th scope="row">@item.Operacao</th>
-                            <td>@item.Natureza</td>
-                            <td>R$ @item.Valor</td>
+                            <th scope="row">@item.Natureza</th>
+                            <td>R$ @string.Format("{0:N}",@item.Valor)</td>
                             <td>@item.Data.ToString("dd/MM/yyyy")</td>
                             <td>@item.Hora</td>
                             <td>@item.CPF</td>

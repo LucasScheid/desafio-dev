@@ -134,7 +134,7 @@ Segue abaixo as duas tabelas do projeto **arquivo** e **tipo_transacao** com a s
 ![alt text](https://github.com/LucasScheid/desafio-dev/blob/main/imagens-doc/tabelas-banco.png)
 
 ## Executando os testes de unidade
-Para executar os testes, você vai precisar da CLI do .NET, caso não tiver [neste link](https://docs.microsoft.com/pt-br/dotnet/core/tools/) tem as instruções para a instalação. Uma outra opção seria abrir a solution e executar via [Visual Studio](https://visualstudio.microsoft.com/pt-br/vs/community/). A partir da pasta raiza `desafio-dev` execute o seguinte comando para entrar na pasta para execução dos testes de unidade: 
+Para executar os testes, você vai precisar da CLI do .NET, caso não tiver [neste link](https://docs.microsoft.com/pt-br/dotnet/core/tools/) tem as instruções para a instalação. Uma outra opção seria abrir a solution via [Visual Studio](https://visualstudio.microsoft.com/pt-br/vs/community/) e executar o projeto de testes. A partir da pasta raiza `desafio-dev` execute o seguinte comando para entrar na pasta para execução dos testes de unidade: 
 ```
 cd cnab-api\cnab-unit-tests
 ```

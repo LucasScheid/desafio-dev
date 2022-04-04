@@ -36,22 +36,25 @@ namespace cnab_services.arquivo
 
         protected void ValidarCampoDecimal(string indicadorLinha, string valor, string textoCampo)
         {
-            if (string.IsNullOrEmpty(valor))
-            {
+            if (string.IsNullOrEmpty(valor) || string.IsNullOrWhiteSpace(valor))
                 _errosLinha.Add($"{indicadorLinha} {textoCampo} está em branco.");
-            }
             else
             {
-                if (!decimal.TryParse(valor, out _))
-                {
+                bool conversaoOK = decimal.TryParse(valor, out decimal valorConvertido);
+
+                if (!conversaoOK)
                     _errosLinha.Add($"{indicadorLinha} O campo {textoCampo} é inválido. Valor enviado: {valor}");
+                else
+                {
+                    if (valorConvertido <= 0)
+                        _errosLinha.Add($"{indicadorLinha} O campo {textoCampo} deve ser maior que zero. Valor enviado: {valor}");
                 }
             }
         }
 
         protected void ValidarCampoData(string indicadorLinha, string valor, string textoCampo, string formatoData)
         {
-            if (string.IsNullOrEmpty(valor))
+            if (string.IsNullOrEmpty(valor) || string.IsNullOrWhiteSpace(valor))
             {
                 _errosLinha.Add($"{indicadorLinha} {textoCampo} está em branco.");
             }
@@ -66,7 +69,7 @@ namespace cnab_services.arquivo
 
         protected void ValidarCampoHora(string indicadorLinha, string valor, string textoCampo, string formatoHora)
         {
-            if (string.IsNullOrEmpty(valor))
+            if (string.IsNullOrEmpty(valor) || string.IsNullOrWhiteSpace(valor))
             {
                 _errosLinha.Add($"{indicadorLinha} {textoCampo} está em branco.");
             }
@@ -81,7 +84,7 @@ namespace cnab_services.arquivo
 
         protected void ValidarCampoInt(string indicadorLinha, string valor, string textoCampo, bool validarMaiorZero = false)
         {
-            if (string.IsNullOrEmpty(valor))
+            if (string.IsNullOrEmpty(valor) || string.IsNullOrWhiteSpace(valor))
             {
                 _errosLinha.Add($"{indicadorLinha} {textoCampo} está em branco.");
             }
@@ -109,7 +112,7 @@ namespace cnab_services.arquivo
 
         protected void ValidarCampoBranco(string indicadorLinha, string valor, string textoCampo)
         {
-            if (string.IsNullOrEmpty(valor))
+            if (string.IsNullOrWhiteSpace(valor) || string.IsNullOrEmpty(valor))
             {
                 _errosLinha.Add($"{indicadorLinha} {textoCampo} está em branco.");
             }
@@ -117,7 +120,7 @@ namespace cnab_services.arquivo
 
         protected bool CampoBranco(string indicadorLinha, string valor, string textoCampo)
         {
-            if (string.IsNullOrEmpty(valor))
+            if (string.IsNullOrEmpty(valor) || string.IsNullOrWhiteSpace(valor))
             {
                 _errosLinha.Add($"{indicadorLinha} {textoCampo} está em branco.");
                 return true;
@@ -135,7 +138,21 @@ namespace cnab_services.arquivo
 
         protected static string GetConteudo(PosicaoArquivo posicaoCampoArquivo, string linha)
         {
-            return !posicaoCampoArquivo.UltimoCampo ? linha[posicaoCampoArquivo.Inicio..posicaoCampoArquivo.Fim] : linha[posicaoCampoArquivo.Inicio..];
+            string conteudo = string.Empty;
+            int tamanhoLinha = linha.Length;
+
+            if (posicaoCampoArquivo.UltimoCampo)
+            {
+                if (posicaoCampoArquivo.Inicio <= tamanhoLinha)
+                    conteudo = linha[posicaoCampoArquivo.Inicio..];
+            }
+            else
+            {
+                if (posicaoCampoArquivo.Inicio <= tamanhoLinha && posicaoCampoArquivo.Fim <= tamanhoLinha)
+                    conteudo = linha[posicaoCampoArquivo.Inicio..posicaoCampoArquivo.Fim];
+            }
+
+            return conteudo;
         }
 
         protected string GetMensagemErro()
