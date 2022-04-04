@@ -70,6 +70,8 @@ namespace cnap_app.Controllers
 
         public async Task<IActionResult> GeralIndex()
         {
+            string msg = "Nenhum registro encontrado.";
+
             try
             {
                 IList<CNABDatabase> result = await BuscarTodosRegistros((await ObterTokenAutenticacao()).Token);
@@ -77,12 +79,11 @@ namespace cnap_app.Controllers
                 if (result != null && result.Count > 0)
                     ViewData["Resultado"] = result;
                 else
-                    ViewData["Mensagem"] = "Nenhum registro encontrado.";
+                    ViewData["Mensagem"] = msg;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                _logger.LogError(ex.Message);
-                ViewData["Mensagem"] = ex.Message;
+                ViewData["Mensagem"] = msg;
             }
 
             return View();

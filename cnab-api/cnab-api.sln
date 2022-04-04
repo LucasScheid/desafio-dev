@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "cnab-contracts", "cnab-cont
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "cnab-app", "cnab-app\cnab-app.csproj", "{452E9C7C-FD58-4ECC-ADAE-A7CB24234DA3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cnab-unit-tests", "cnab-unit-tests\cnab-unit-tests.csproj", "{C7ACA822-2AA5-462E-A64E-53DE541C8330}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{452E9C7C-FD58-4ECC-ADAE-A7CB24234DA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{452E9C7C-FD58-4ECC-ADAE-A7CB24234DA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{452E9C7C-FD58-4ECC-ADAE-A7CB24234DA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7ACA822-2AA5-462E-A64E-53DE541C8330}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7ACA822-2AA5-462E-A64E-53DE541C8330}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7ACA822-2AA5-462E-A64E-53DE541C8330}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7ACA822-2AA5-462E-A64E-53DE541C8330}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

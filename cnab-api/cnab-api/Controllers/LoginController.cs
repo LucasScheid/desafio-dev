@@ -10,7 +10,7 @@ namespace cnab_api.Controllers
     {
         private readonly ILoginServico _loginServico;
 
-        public LoginController(ILogger<OperacoesController> log, ILoginServico loginServico) : base(log)
+        public LoginController(ILogger<LoginController> log, ILoginServico loginServico) : base(log)
         {
             _loginServico = loginServico;
         }

@@ -145,12 +145,15 @@ namespace cnab_services.arquivo
 
         protected async Task<ICollection<string>> ObterLinhas()
         {
-            using var reader = new StreamReader(_file.OpenReadStream(), Encoding.UTF8);
-
-            while (reader.Peek() >= 0)
+            if (_linhas.Count == 0)
             {
-                var linha = await reader.ReadLineAsync();
-                _linhas.Add(string.IsNullOrEmpty(linha) ? string.Empty : linha);
+                using var reader = new StreamReader(_file.OpenReadStream(), Encoding.UTF8);
+
+                while (reader.Peek() >= 0)
+                {
+                    var linha = await reader.ReadLineAsync();
+                    _linhas.Add(string.IsNullOrEmpty(linha) ? string.Empty : linha);
+                }
             }
 
             return _linhas;
@@ -158,6 +161,9 @@ namespace cnab_services.arquivo
 
         private bool ValidarArquivo(int fileMaxSize)
         {
+            if (fileMaxSize == 0)
+                fileMaxSize = 2097152;
+
             if (_file.Length == 0)
             {
                 MensagemErro = "Arquivo vazio!";
