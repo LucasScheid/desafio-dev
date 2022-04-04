@@ -1,4 +1,4 @@
-# :grinning: Overview :rocket:
+# Overview :rocket:
 Este projeto é a resolução de um desafio realizado para uma vaga de desenvolvedor. O objetivo deste desafio é avaliar os conhecimentos técnicos em programação. Este desafio foi implementado a partir das instruções deste [documento](https://github.com/ByCodersTec/desafio-dev).
 
 # Tecnologias Utilizadas
@@ -55,14 +55,15 @@ Após o término da execução do comando `docker compose up -d` verifique o sta
 ```
 docker compose ps -a
 ```
+
 ![alt text](https://github.com/LucasScheid/desafio-dev/blob/main/imagens-doc/docker-ps-a.png)
 
-A consulta pode ser feita através da interface gráfica do [Docker Desktop](https://www.docker.com/products/docker-desktop/):
+A consulta também pode ser feita através da interface gráfica do [Docker Desktop](https://www.docker.com/products/docker-desktop/):
 
 ![alt text](https://github.com/LucasScheid/desafio-dev/blob/main/imagens-doc/stack-up.png)
 
 ## Acessando o Front-End
-Após a finalização do comando `docker compose up -d`, o acesso ao front pode ser feito no endereço abaixo:
+Após a finalização do comando `docker compose up -d`, o acesso ao front pode ser feito via navegador no endereço abaixo:
 ```
 http://localhost:8060/
 ```
@@ -83,8 +84,8 @@ Segue abaixo a funcionalidade de Upload.
 
 Para testar a funcionalidade de upload utilize o arquivo [CNAB.txt](https://github.com/LucasScheid/desafio-dev/blob/main/CNAB.txt)
 
-## :warning: Atenção, ponto Importante!!! :warning:
-A infraestrutura de banco de dados utilizada neste projeto, leva em média 100 segundos para estar totalmente pronta para utilização com as devidas tabelas criadas. Na maioria das vezes o front-end da aplicação já encontra-se disponível mas o banco ainda não. Utilize a funcionalidade disponível no front end (endereço abaixo) para verificar se o banco já está 100% pronto para utilização. Caso estiver tudo certo, pode começar a utilização das demais funcionalidades do front-end.
+## :warning: Atenção, ponto Importante!!!
+A infraestrutura de banco de dados utilizada neste projeto, leva em média 100 segundos para estar totalmente pronta para utilização com as devidas tabelas criadas. Na maioria das vezes, o front-end da aplicação já encontra-se disponível mas o banco ainda não. Utilize a funcionalidade disponível no front end (endereço abaixo) para verificar se o banco já está 100% pronto para utilização. Caso estiver tudo certo, pode começar a utilização das demais funcionalidades do front-end.
 ```
 http://localhost:8060/Consulta/StatusDatabaseIndex
 ```
@@ -93,27 +94,28 @@ Abaixo um exemplo quando está 100% pronto.
 
 ![alt text](https://github.com/LucasScheid/desafio-dev/blob/main/imagens-doc/consulta-status-banco-ok.png)
 
-Abaixo um exemplo quando ainda está em execução, portanto é necessário aguardar.
+Abaixo um exemplo quando ainda está em execução, portanto é necessário aguardar alguns segundos. Neste caso que ainda não estiver pronto, utilize o botão `Verificar Novamente` nesta mesma tela.
 
 ![alt text](https://github.com/LucasScheid/desafio-dev/blob/main/imagens-doc/consulta-status-banco-nao-ok.png)
 
 ## Acessando a API (Back-End)
-O acesso a API pode ser feito no endereço abaixo. Ela possui os métodos documentados na própria interface do [Swagger](https://swagger.io/).
+O acesso a API pode ser feito no endereço abaixo. Ela possui todos os métodos devidamente documentados na própria interface do [Swagger](https://swagger.io/).
 ```
 http://localhost:8050/swagger/index.html
 ```
-A API possui autenticação, o Token pode ser obtido através da realização de um POST no endereço abaixo na própria interface do Swagger:
+A API possui autenticação, caso for necessário realizar algum acesso a algum dos métodos, o Token pode ser obtido através da realização de um POST no endereço abaixo na própria interface do Swagger ou mesmo via [Postman](https://www.postman.com/):
 
 ```
 http://localhost:8050/Login
 ```
-Para o payload, utilize o JSON abaixo:
+Para o payload do método Login, utilize o JSON abaixo:
 ```
 {
   "usuario": "api-cnab-user",
   "senha": "VN403HYdpzbDtfphmBeU"
 }
 ```
+
 ![alt text](https://github.com/LucasScheid/desafio-dev/blob/main/imagens-doc/api-swagger.png)
 
 ## Acessando o Banco de Dados (SQL Server)
@@ -131,10 +133,11 @@ database: dbcnab
 ```
 
 Segue abaixo as duas tabelas do projeto **arquivo** e **tipo_transacao** com a sua respectiva estrutura:
+
 ![alt text](https://github.com/LucasScheid/desafio-dev/blob/main/imagens-doc/tabelas-banco.png)
 
 ## Executando os testes de unidade
-Para executar os testes, você vai precisar da CLI do .NET, caso não tiver [neste link](https://docs.microsoft.com/pt-br/dotnet/core/tools/) tem as instruções para a instalação. Uma outra opção seria abrir a solution via [Visual Studio](https://visualstudio.microsoft.com/pt-br/vs/community/) e executar o projeto de testes. A partir da pasta raiza `desafio-dev` execute o seguinte comando para entrar na pasta para execução dos testes de unidade: 
+Para executar os testes, você vai precisar da CLI do .NET, caso não tiver [neste link](https://docs.microsoft.com/pt-br/dotnet/core/tools/) tem as instruções para a instalação. Uma outra opção seria abrir a solution via [Visual Studio](https://visualstudio.microsoft.com/pt-br/vs/community/) e executar o projeto de testes. A partir da pasta raiz `desafio-dev`, execute o seguinte comando para entrar na pasta para execução dos testes de unidade:
 ```
 cd cnab-api/cnab-unit-tests/
 ```
@@ -148,13 +151,14 @@ Para obter mais detalhes sobre os testes, o mesmo comando pode ser usado com as 
 dotnet test -l "console;verbosity=normal"
 ```
 Abaixo segue o resultado da execução:
+
 ![alt text](https://github.com/LucasScheid/desafio-dev/blob/main/imagens-doc/unit-test-result.png)
 
 # Referência
 
-Abaixo, seguem algumas referências de documentação utilizadas para construção do projeto:
+Abaixo, seguem algumas referências de documentação utilizadas para construção deste projeto:
 
-* [Initialize MS SQL in Docker container - Create database at startup] (https://www.softwaredeveloper.blog/initialize-mssql-in-docker-container)
+* [Initialize MS SQL in Docker container - Create database at startup](https://www.softwaredeveloper.blog/initialize-mssql-in-docker-container)
 * [Mssql-docker-initialization-demo](https://github.com/tometchy/Mssql-docker-initialization-demo)
 * [Upload arquivos em ASP.NET Core](https://docs.microsoft.com/pt-br/aspnet/core/mvc/models/file-uploads?view=aspnetcore-6.0)
 
